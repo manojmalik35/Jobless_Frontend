@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
-// import LoginDataManager from "./dataManager";
+import SignupDataManager from "./dataManager";
 
 class Signup extends Component {
     constructor(props) {
         super(props);
-        // this.dataManager = new LoginDataManager();
+        this.dataManager = new SignupDataManager();
         this.state = {
             role: 1,
             name: "",
@@ -28,13 +28,21 @@ class Signup extends Component {
     };
 
     handleSubmit = (e) => {
-        // this.dataManager.handleLogin({email : this.state.email, password : this.state.password})
-        // .then(res=>{
-        //     console.log(res.data);
-        // })
-        // .catch(err=>{
-        //     console.log(err);
-        // })
+        this.dataManager.handleSignup({
+            email : this.state.email,
+            password : this.state.password,
+            name : this.state.name,
+            role : this.state.role,
+            phone : this.state.phone
+        })
+        .then(res=>{
+            console.log(res.data);
+            if(res.data.status)
+                localStorage.setItem("user", JSON.stringify(res.data.data));
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     };
 
     checkActiveButton = (role) => {

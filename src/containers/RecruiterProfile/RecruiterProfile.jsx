@@ -3,11 +3,10 @@ import Header from '../../components/Header/Header'
 import Jobs from "../Jobs/Jobs";
 import PostJob from "../PostJob/PostJob";
 
-class Profile extends Component {
+class RecruiterProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            role: 1,
             menu: "Jobs"
         }
     }
@@ -15,7 +14,6 @@ class Profile extends Component {
     handleMenuChange = (newMenu) => {
 
         this.setState({
-            role : this.state.role,
             menu: newMenu
         });
     }
@@ -38,17 +36,15 @@ class Profile extends Component {
 
     getJobs = () => {
         if (this.state.menu == "Jobs")
-            return (<Jobs role={this.state.role} handleMenuChange={this.handleMenuChange}></Jobs>)
+            return (<Jobs role={1} handleMenuChange={this.handleMenuChange}></Jobs>)
         else if (this.state.menu == "Post")
             return (<PostJob></PostJob>)
-        else
-            return (<Jobs role={this.state.role} type={this.state.menu} handleMenuChange={this.handleMenuChange}></Jobs>)
     }
 
     render() {
         return (
             <div className="base">
-                <Header role={this.state.role} handleMenuChange={this.handleMenuChange}></Header>
+                <Header role={1} handleMenuChange={this.handleMenuChange}></Header>
                 <div className="content">
                     {this.getBreadcrumb()}
                     {this.getJobs()}
@@ -58,4 +54,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default RecruiterProfile;

@@ -4,4 +4,8 @@ const loginUser = (payload) =>{
     return axiosInstance.post("/users/login", payload);
 }
 
-export default loginUser;
+const signupUser = (payload)=>{
+    return axiosInstance.post("/users/signup", payload);
+}
+
+export {loginUser, signupUser};

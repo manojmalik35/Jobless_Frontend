@@ -1,4 +1,4 @@
-import loginUser from "../../service/authService";
+import {loginUser} from "../../service/authService";
 
 class LoginDataManager {
     

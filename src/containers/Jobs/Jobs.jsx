@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import JobCard from "../../components/JobCard/JobCard";
+import RecruiterJobcard from "../../components/RecruiterJobcard/RecruiterJobcard";
+import CandidateJobcard from "../../components/CandidateJobcard/CandidateJobcard";
 import NoJobs from "../../components/NoJobs/NoJobs";
-import Pagination from "../../components/Pagination/Pagination";
 
 class Jobs extends Component {
     constructor(props) {
@@ -49,41 +49,53 @@ class Jobs extends Component {
                     "description": "You will be managing all the managers of the company.",
                     "package": "1000000",
                     "company": "Saumya and sons"
-                },{},{},{},{},{},{}
+                }
             ]
         }
 
     }
 
     getHeading = () => {
-        let {role, type} = this.props;
+        let { role, type } = this.props;
         if (role == 1) {
             return (<h3>Jobs posted by you</h3>)
         }
-        if(type == "Applied")
+        if (type == "Applied")
             return (<h3>Jobs applied by you</h3>)
         return (<h3>Jobs for you</h3>)
     }
 
     getCards = (rowNo) => {
-        let {role, type} = this.props;
+        let { role, type } = this.props;
         let si = rowNo * 4;
         let ei = si + 4;
         let cards = [];
-        let buttonHeading = "View Applications";
-        if(role == 2) buttonHeading = "Apply";
-        if(role == 2 && type == "Applied") buttonHeading = undefined;
-        while (si < this.state.jobs.length && si < ei) {
-            cards.push(<JobCard job={this.state.jobs[si]} buttonHeading={buttonHeading}></JobCard>);
-            si++;
+        if (role == 1) {
+            while (si < this.state.jobs.length && si < ei) {
+                cards.push(<RecruiterJobcard job={this.state.jobs[si]}></RecruiterJobcard>);
+                si++;
+            }
+        } else {
+            if (type == "Available") {
+                while (si < this.state.jobs.length && si < ei) {
+                    cards.push(<CandidateJobcard job={this.state.jobs[si]} applied={false}></CandidateJobcard>);
+                    si++;
+                }
+            } else {
+                while (si < this.state.jobs.length && si < ei) {
+                    cards.push(<CandidateJobcard job={this.state.jobs[si]} applied={true}></CandidateJobcard>);
+                    si++;
+                }
+
+            }
         }
         return cards;
     }
 
     getRows = () => {
-        let {role, type, handleMenuChange} = this.props;
+        let { role, type, handleMenuChange } = this.props;
         let totalJobs = this.state.jobs.length;
-        if(totalJobs == 0){
+        if (totalJobs == 0) {
             return (
                 <NoJobs role={role} type={type} handleMenuChange={handleMenuChange}></NoJobs>
             )

@@ -208,7 +208,7 @@ p {
 .jobs {
   margin-top: 1rem;
 }
-.card {
+.job-card {
   background-color: white;
   color: black;
   height: 10rem;
@@ -222,14 +222,13 @@ p {
   padding: 0;
 }
 .card-text{
-  height: 3rem;
-  background-color: red;
+  /* height: 3rem; */
+  /* background-color: red; */
 }
 .row {
   margin-bottom: 1.5rem;
 }
 .company-btn-container {
-  
   display: flex;
   justify-content: space-between;
 }

@@ -14,9 +14,9 @@ class Login extends Component {
         }
     }
 
-    handleChange = (target) => {
-        let value = target.value;
-        let name = target.name;
+    handleChange = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
 
         this.setState({
             [name]: value
@@ -27,6 +27,8 @@ class Login extends Component {
         this.dataManager.handleLogin({ email: this.state.email, password: this.state.password })
             .then(res => {
                 console.log(res.data);
+                if (res.data.status)
+                    localStorage.setItem("user", JSON.stringify(res.data.data));
             })
             .catch(err => {
                 console.log(err);
