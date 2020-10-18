@@ -42,15 +42,15 @@ class Login extends Component {
                     <h3>Login</h3>
                     <form>
                         <fieldset>
-                            <label>Email address</label>
-                            <Input type="email" value={this.state.email} handleChange={this.handleChange}></Input>
+                            <label>Email address*</label>
+                            <Input type="email" name="email" value={this.state.email} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <fieldset>
                             <div className="password-label">
                                 <label>Password</label>
-                                <a href="/">Forgot your password?</a>
+                                <a href="/forgot-password">Forgot your password?</a>
                             </div>
-                            <Input type="password" value={this.state.password} handleChange={this.handleChange}></Input>
+                            <Input type="password" name="password" value={this.state.password} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <div className="error-container hidden">
                             <p className="error">Incorrect email address or password.</p>
@@ -59,7 +59,7 @@ class Login extends Component {
                             <button className="btn" type="button" onClick={this.handleSubmit}>Login</button>
                         </div>
                     </form>
-                    <p className="bottom">New to JobLess? <a href="/">Create an account</a></p>
+                    <p className="bottom">New to JobLess? <a href="/signup">Create an account</a></p>
                 </div>
             </div>
         );

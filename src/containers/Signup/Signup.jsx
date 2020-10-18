@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import Header from '../../components/Header/Header';
-import Input from '../../components/Input/Input';
-import recImg from "../../assets/recruitment.svg";
+import React, { Component } from "react";
+import Header from "../../components/Header/Header";
+import Input from "../../components/Input/Input";
 // import LoginDataManager from "./dataManager";
 
 class Signup extends Component {
-
     constructor(props) {
         super(props);
         // this.dataManager = new LoginDataManager();
@@ -15,18 +13,19 @@ class Signup extends Component {
             email: "",
             password: "",
             confirmPassword: "",
-            phone: ""
-        }
+            phone: "",
+        };
     }
 
-    handleChange = (target) => {
+    handleChange = (e) => {
+        let target = e.target;
         let value = target.value;
         let name = target.name;
 
         this.setState({
-            [name]: value
-        })
-    }
+            [name]: value,
+        });
+    };
 
     handleSubmit = (e) => {
         // this.dataManager.handleLogin({email : this.state.email, password : this.state.password})
@@ -36,8 +35,12 @@ class Signup extends Component {
         // .catch(err=>{
         //     console.log(err);
         // })
+    };
 
-    }
+    checkActiveButton = (role) => {
+        if (role == this.state.role) return "btn role active";
+        return "btn role";
+    };
 
     render() {
         return (
@@ -49,29 +52,41 @@ class Signup extends Component {
                         <fieldset>
                             <label>I'm a*</label>
                             <div className="role-container">
-                                <button className="btn role" className="active" type="button" onClick={this.handleSubmit}>Recruiter</button>
-                                <button className="btn role" type="button" onClick={this.handleSubmit}>Candidate</button>
+                                <button className={this.checkActiveButton(1)} type="button" value={1} name="role" onClick={this.handleChange}>
+                                    Recruiter
+                                </button>
+                                <button className={this.checkActiveButton(2)} type="button" value={2} name="role" onClick={this.handleChange}>
+                                    Candidate
+                                </button>
                             </div>
                         </fieldset>
                         <fieldset>
-                            <label>Email address</label>
-                            <Input type="email" value={this.state.email} handleChange={this.handleChange}></Input>
+                            <label>Full Name*</label>
+                            <Input type="text" name="name" value={this.state.name} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <fieldset>
-                            <div className="password-label">
-                                <label>Password</label>
-                                <a href="/">Forgot your password?</a>
-                            </div>
-                            <Input type="password" value={this.state.password} handleChange={this.handleChange}></Input>
+                            <label>Email address*</label>
+                            <Input type="email" name="email" value={this.state.email} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
-                        <div className="error-container hidden">
-                            <p className="error">Incorrect email address or password.</p>
+                        <div className="passwords">
+                            <fieldset>
+                                <label>Create Password*</label>
+                                <Input type="password" name="password" value={this.state.password} handleChange={this.handleChange} required={true}></Input>
+                            </fieldset>
+                            <fieldset>
+                                <label>Confirm Password*</label>
+                                <Input type="password" name="confirmPassword" value={this.state.confirmPassword} handleChange={this.handleChange} required={true}></Input>
+                            </fieldset>
                         </div>
+                            <fieldset>
+                                <label>Phone no.</label>
+                                <Input type="tel" name="phone" value={this.state.phone} maxlength="10" handleChange={this.handleChange}></Input>
+                            </fieldset>
                         <div className="btn-container">
-                            <button className="btn" type="button" onClick={this.handleSubmit}>Login</button>
+                            <button className="btn" type="button" onClick={this.handleSubmit}> Signup </button>
                         </div>
                     </form>
-                    <p className="bottom">New to JobLess? <a href="/signup">Create an account</a></p>
+                    <p className="bottom"> Have an account? <a href="/login">Login</a> </p>
                 </div>
             </div>
         );
