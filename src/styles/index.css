@@ -1,5 +1,9 @@
+@font-face {
+  font-family: "Helvetica Neue";
+  src: local("Helvetica Neue"), url(../fonts/HelveticaNeue.ttf) format("ttf");
+}
 
-*{
+* {
   box-sizing: border-box;
 }
 html {
@@ -10,8 +14,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Helvetica Neue";
 }
 #root {
   height: 100%;
@@ -153,14 +156,14 @@ a {
 }
 .login-btn {
   background-color: #37528e;
-    border: 2px solid #3c698b;
-    width: 75%;
-    height: 85%;
-    border-radius: 8%;
-    color: white;
-    font-size: medium;
-    text-align: center;
-    padding-top: 0.5rem;
+  border: 2px solid #3c698b;
+  width: 75%;
+  height: 85%;
+  border-radius: 8%;
+  color: white;
+  font-size: medium;
+  text-align: center;
+  padding-top: 0.5rem;
 }
 .forgot {
   height: 20rem;
@@ -211,17 +214,18 @@ p {
 .job-card {
   background-color: white;
   color: black;
-  height: 10rem;
+  height: 11rem;
   border-radius: 5%;
   box-shadow: 0px 1px 2px 0px lightgray;
   padding: 1rem;
   font-size: small;
   position: relative;
+  /* overflow: hidden; */
 }
-.card-body{
+.card-body {
   padding: 0;
 }
-.card-text{
+.card-text {
   /* height: 3rem; */
   /* background-color: red; */
 }
@@ -255,16 +259,47 @@ p {
 .post {
   height: 35rem;
 }
-.img-container{
-  height: 30rem;
-  width : 40rem;
-  position: absolute;
-  top : 10rem;
-  left : 45rem;
+.home {
+  background-image: linear-gradient(
+    to bottom,
+    #303f60,
+    #303f60 50%,
+    #edf6ff 50%,
+    #edf6ff 100%
+  );
 }
-.home-img{
+.home-content{
+  padding: 0 10rem;
+  height: 90vh;
+}
+.showcase{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  height: 21rem;
+  margin-bottom: 2rem;
+}
+.img-container {
+  height: 21rem;
+  width: 34rem;
+  /* position: absolute;
+  top: 8rem;
+  left: 43rem; */
+}
+.home-img {
   height: 100%;
   width: 100%;
   border-radius: 8%;
 }
-
+.showcase-heading {
+  color: white;
+  /* position: absolute;
+  top: 8rem;
+  left: 10rem; */
+  height : 100%;
+  font-size: 3rem;
+}
+.home-btn{
+  width: 50%;
+  height: 3rem;
+}
