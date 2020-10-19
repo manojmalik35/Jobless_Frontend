@@ -2,57 +2,35 @@ import React, { Component } from 'react';
 import RecruiterJobcard from "../../components/RecruiterJobcard/RecruiterJobcard";
 import CandidateJobcard from "../../components/CandidateJobcard/CandidateJobcard";
 import NoJobs from "../../components/NoJobs/NoJobs";
+import GetJobsDataManager from './dataManager';
+import { getPostedJobsAction } from '../../actions/jobActions';
+import { connect } from 'react-redux';
 
 class Jobs extends Component {
     constructor(props) {
         super(props);
+        this.dataManager = new GetJobsDataManager();
         this.state = {
-            jobs: [
-                {
-                    "uuid": "a8ad674e-2e92-4023-a13a-999062e78137",
-                    "title": "Tester",
-                    "description": "You will be working in testing",
-                    "package": "2 lpa",
-                    "company": "Squareboat"
-                },
-                {
-                    "uuid": "06373bbf-3d4e-48e4-a522-04406c935d56",
-                    "title": "New Job",
-                    "description": "You will be working on CAD",
-                    "package": "200000",
-                    "company": "Jaya and company"
-                },
-                {
-                    "uuid": "1c639980-03d3-4aea-8521-c9c14bbb16c5",
-                    "title": "CAD Worker",
-                    "description": "You will be working on CAD",
-                    "package": "200000",
-                    "company": "Jaya and company"
-                },
-                {
-                    "uuid": "a24e9da4-3050-43c4-ab21-36b354f8503b",
-                    "title": "Video Editor",
-                    "description": "You will be editing the videos.",
-                    "package": "200000",
-                    "company": "Krishna and Fathers"
-                },
-                {
-                    "uuid": "61d3282a-c792-4e53-9d1d-121e0fbade7e",
-                    "title": "Assisstant Regional Manager",
-                    "description": "You will be assisting the regional manager.",
-                    "package": "100000",
-                    "company": "Saumya and sons"
-                },
-                {
-                    "uuid": "a56b3914-1e53-4b90-8438-d5de7abd81e3",
-                    "title": "Senior Manager",
-                    "description": "You will be managing all the managers of the company.",
-                    "package": "1000000",
-                    "company": "Saumya and sons"
-                }
-            ]
+            jobs: []
         }
 
+    }
+
+    componentDidMount() {
+        this.dataManager.getPostedJobs()
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status) {
+                    this.props.getPostedJobsAction(res.data.data);
+                    this.setState({
+                        jobs: this.props.jobs.jobs
+                    })
+                    console.log(this.state.jobs);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     getHeading = () => {
@@ -129,4 +107,16 @@ class Jobs extends Component {
     }
 }
 
-export default Jobs;
+
+const mapStateToProps = state => {
+    const { jobs } = state;
+    return {
+        jobs
+    }
+}
+
+const mapDispatchToProps = {
+    getPostedJobsAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);

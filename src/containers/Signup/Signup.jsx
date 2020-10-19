@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import SignupDataManager from "./dataManager";
+import {connect} from 'react-redux';
+import {signupAction} from '../../actions/authActions';
 
 class Signup extends Component {
     constructor(props) {
@@ -37,8 +39,14 @@ class Signup extends Component {
         })
         .then(res=>{
             console.log(res.data);
-            if(res.data.status)
-                localStorage.setItem("user", JSON.stringify(res.data.data));
+            if(res.data.status){
+                this.props.signupAction(res.data.data);
+                if(res.data.data.role == 1){
+                    this.props.history.push("/recruiter-profile");
+                }else{
+                    this.props.history.push("/candidate-profile");
+                }
+            }
         })
         .catch(err=>{
             console.log(err);
@@ -101,4 +109,12 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+const mapStateToProps = state=> {
+    return {}
+}
+
+const mapDispatchToProps = {
+    signupAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

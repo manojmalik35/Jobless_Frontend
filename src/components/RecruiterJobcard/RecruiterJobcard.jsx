@@ -44,7 +44,7 @@ const JobCard = (props) => {
                     <div className="company-btn-container">
                         <span>{props.job.company}</span>
                         <button className="job-btn" id={props.job.uuid} onClick={handleShow}>View All Applications</button>
-                        <ApplicantsModal show={modalShow} onHide={handleClose} count={count} applicants={applicants}></ApplicantsModal>
+                        <ApplicantsModal key={props.job.uuid} show={modalShow} onHide={handleClose} count={count} applicants={applicants}></ApplicantsModal>
                     </div>
                 </Card.Body>
             </Card>

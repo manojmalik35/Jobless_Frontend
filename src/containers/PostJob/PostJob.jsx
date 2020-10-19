@@ -1,17 +1,49 @@
 import React, { Component } from 'react';
 import Input from "../../components/Input/Input";
+import PostJobDataManager from './dataManager';
+import {postAction} from '../../actions/jobActions';
+import {connect} from 'react-redux';
 
 class PostJob extends Component {
-    state = {
-        title: "",
-        description: "",
-        company: "",
-        package: ""
+    constructor(props){
+        super(props);
+        this.dataManager = new PostJobDataManager();
+        this.state = {
+            title: "",
+            description: "",
+            company: "",
+            package: ""
+        }
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
+        })
+    }
+
+    handleSubmit = (e)=>{
+        this.dataManager.handlePostJob({
+            title : this.state.title,
+            description : this.state.description,
+            company : this.state.company,
+            package : this.state.package
+        })
+        .then(res => {
+            console.log(res.data);
+
+            if (res.data.status){
+                this.props.postAction(res.data.data);
+                if(res.data.data.role == 1){
+                    this.props.history.push("/recruiter-profile");
+                }else{
+                    this.props.history.push("/candidate-profile");
+                }
+            }
+                
+        })
+        .catch(err => {
+            console.log(err);
         })
     }
 
@@ -45,4 +77,12 @@ class PostJob extends Component {
     }
 }
 
-export default PostJob;
+const mapStateToProps = state =>({
+
+})
+
+const mapDispatchToProps = {
+    postAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostJob);

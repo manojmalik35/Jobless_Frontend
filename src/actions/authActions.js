@@ -1,4 +1,4 @@
-import { LOGIN_SUCC } from './types';
+import { LOGIN_SUCC, SIGNUP_SUCC } from './types';
 
 export const loginAction = (payload) => (dispatch) => {
 
@@ -8,3 +8,13 @@ export const loginAction = (payload) => (dispatch) => {
     })
 
 }
+
+export const signupAction = (payload) => (dispatch) => {
+
+    dispatch({
+        type: SIGNUP_SUCC,
+        payload
+    })
+
+}
+
