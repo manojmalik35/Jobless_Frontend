@@ -9,7 +9,7 @@ function getCards(applicants, rowNo){
     let cards = [];
 
     while (si < applicants.length && si < ei) {
-        cards.push(<ApplicantCard applicant={applicants[si]}></ApplicantCard>);
+        cards.push(<ApplicantCard key={applicants[si].uuid} applicant={applicants[si]}></ApplicantCard>);
         si++;
     }
 

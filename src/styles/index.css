@@ -263,10 +263,12 @@ p {
   background-image: linear-gradient(
     to bottom,
     #303f60,
-    #303f60 50%,
-    #edf6ff 50%,
-    #edf6ff 100%
+    #303f60 45%,
+    #edf6ff 45%,
+    #edf6ff 100vh
   );
+  background-size: cover;
+  height: 120vh;
 }
 .home-content{
   padding: 0 10rem;
@@ -302,4 +304,13 @@ p {
 .home-btn{
   width: 50%;
   height: 3rem;
+}
+.card-deck{
+  margin-top: 2rem;
+}
+.home-card{
+  padding: 1rem;
+}
+.home-card .card-title{
+  color : #43afff;
 }

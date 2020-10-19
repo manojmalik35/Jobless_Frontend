@@ -1,24 +1,10 @@
-import {LOGIN_SUCC, LOGIN_FAIL} from './types';
-import authService from '../service/authService';
+import { LOGIN_SUCC } from './types';
 
-export const login = (email, password) => (dispatch) =>{
-    return authService.loginUser({email, password}).then(
-        (data)=>{
+export const loginAction = (payload) => (dispatch) => {
 
-            dispatch({
-                type : LOGIN_SUCC,
-                payload : {user : data}
-            })
-            return Promise.resolve();
-        },
-        (error)=>{
+    dispatch({
+        type: LOGIN_SUCC,
+        payload
+    })
 
-            dispatch({
-                type : LOGIN_FAIL
-            })
-            return Promise.reject();
-        }
-        
-        
-    )
 }

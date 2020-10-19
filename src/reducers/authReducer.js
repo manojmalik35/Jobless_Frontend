@@ -1,9 +1,10 @@
 import {LOGIN_SUCC, LOGIN_FAIL} from '../actions/types';
+import axiosInstance from '../service/createService';
 
-const user = JSON.parse(localStorage.getItem("user"));
-const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+const initialState = {
+    isUserLoggedIn : false,
+    user : {}
+}
 
 
   const authReducer = (state = initialState, action)=>{
@@ -11,16 +12,17 @@ const initialState = user
 
         switch(type){
             case LOGIN_SUCC : 
+                axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${action.payload.authToken}`;
                 return {
                     ...state,
                     isLoggedIn : true,
-                    user : payload.user
+                    user : payload
                 };
             case LOGIN_FAIL:
                 return {
                     ...state,
                     isLoggedIn : false,
-                    user : null
+                    user : {}
                 }
             default : 
                 return state;

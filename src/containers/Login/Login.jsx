@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import LoginDataManager from "./dataManager";
+import { loginAction } from "../../actions/authActions";
+import {connect} from 'react-redux';
 
 class Login extends Component {
 
@@ -27,8 +29,16 @@ class Login extends Component {
         this.dataManager.handleLogin({ email: this.state.email, password: this.state.password })
             .then(res => {
                 console.log(res.data);
-                if (res.data.status)
-                    localStorage.setItem("user", JSON.stringify(res.data.data));
+
+                if (res.data.status){
+                    this.props.loginAction(res.data.data);
+                    if(res.data.data.role == 1){
+                        this.props.history.push("/recruiter-profile");
+                    }else{
+                        this.props.history.push("/candidate-profile");
+                    }
+                }
+                    
             })
             .catch(err => {
                 console.log(err);
@@ -68,4 +78,14 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+const mapStateToProps = state =>({
+
+})
+
+const mapDispatchToProps = {
+    loginAction
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

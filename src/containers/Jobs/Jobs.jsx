@@ -72,18 +72,18 @@ class Jobs extends Component {
         let cards = [];
         if (role == 1) {
             while (si < this.state.jobs.length && si < ei) {
-                cards.push(<RecruiterJobcard job={this.state.jobs[si]}></RecruiterJobcard>);
+                cards.push(<RecruiterJobcard key={this.state.jobs[si].uuid} job={this.state.jobs[si]}></RecruiterJobcard>);
                 si++;
             }
         } else {
             if (type == "Available") {
                 while (si < this.state.jobs.length && si < ei) {
-                    cards.push(<CandidateJobcard job={this.state.jobs[si]} applied={false}></CandidateJobcard>);
+                    cards.push(<CandidateJobcard key={this.state.jobs[si].uuid} job={this.state.jobs[si]} applied={false}></CandidateJobcard>);
                     si++;
                 }
             } else {
                 while (si < this.state.jobs.length && si < ei) {
-                    cards.push(<CandidateJobcard job={this.state.jobs[si]} applied={true}></CandidateJobcard>);
+                    cards.push(<CandidateJobcard key={this.state.jobs[si].uuid} job={this.state.jobs[si]} applied={true}></CandidateJobcard>);
                     si++;
                 }
 
@@ -105,7 +105,7 @@ class Jobs extends Component {
         let rows = []
         for (let i = 0; i < noOfRows; i++) {
             rows.push(
-                <div className="row">
+                <div className="row" key={i}>
                     {this.getCards(i)}
                 </div>
             );

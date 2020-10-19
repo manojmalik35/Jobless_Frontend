@@ -14,27 +14,13 @@ const App = () => {
         <React.Fragment>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact>
-                        <Home></Home>
-                    </Route>
-                    <Route path="/login">
-                        <Login></Login>
-                    </Route>
-                    <Route path="/signup">
-                        <Signup></Signup>
-                    </Route>
-                    <Route path="/forgot-password">
-                        <ForgotPassword></ForgotPassword>
-                    </Route>
-                    <Route path="/reset-password">
-                        <ResetPassword></ResetPassword>
-                    </Route>
-                    <Route path="/recruiter-profile">
-                        <RecruiterProfile></RecruiterProfile>
-                    </Route>
-                    <Route path="/candidate-profile">
-                        <CandidateProfile></CandidateProfile>
-                    </Route>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/signup" component={Signup}/>
+                    <Route path="/forgot-password" component={ForgotPassword}/>
+                    <Route path="/reset-password" component={ResetPassword}/>
+                    <Route path="/recruiter-profile" component={RecruiterProfile}/>
+                    <Route path="/candidate-profile" component={CandidateProfile}/>
                 </Switch>
             </BrowserRouter>
         </React.Fragment>
