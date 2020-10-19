@@ -3,7 +3,7 @@ import RecruiterJobcard from "../../components/RecruiterJobcard/RecruiterJobcard
 import CandidateJobcard from "../../components/CandidateJobcard/CandidateJobcard";
 import NoJobs from "../../components/NoJobs/NoJobs";
 import GetJobsDataManager from './dataManager';
-import { getPostedJobsAction } from '../../actions/jobActions';
+import { getJobsAction, getAppliedJobsAction } from '../../actions/jobActions';
 import { connect } from 'react-redux';
 
 class Jobs extends Component {
@@ -16,21 +16,57 @@ class Jobs extends Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.type != prevProps.type) {
+            if (this.props.type != "Applied") {
+                this.dataManager.getJobs()
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.status) {
+                            this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
+                            this.setState({
+                                jobs: this.props.jobs.jobs
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            } else {
+
+                this.dataManager.getAppliedJobs()
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.status) {
+                            this.props.getAppliedJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
+                            this.setState({
+                                jobs: this.props.jobs.jobs
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+        }
+    }
+
     componentDidMount() {
-        this.dataManager.getPostedJobs()
+
+        this.dataManager.getJobs()
             .then(res => {
                 console.log(res.data);
                 if (res.data.status) {
-                    this.props.getPostedJobsAction(res.data.data);
+                    this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                     this.setState({
                         jobs: this.props.jobs.jobs
                     })
-                    console.log(this.state.jobs);
                 }
             })
             .catch(err => {
                 console.log(err);
             })
+
     }
 
     getHeading = () => {
@@ -116,7 +152,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    getPostedJobsAction
+    getJobsAction,
+    getAppliedJobsAction
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Jobs);

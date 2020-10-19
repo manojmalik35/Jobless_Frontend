@@ -175,7 +175,7 @@ p {
   display: flex;
   padding-top: 0.5rem;
   justify-content: space-between;
-  width: 14rem;
+  width: 16rem;
 }
 .header-profile a {
   color: white;
@@ -187,19 +187,32 @@ p {
 .profile_block {
   display: flex;
   justify-content: space-between;
-  width: 4rem;
+  width: 5rem;
 }
 .profile-pic {
   border: 1px solid black;
+  color : black;
   background-color: #edf6ff;
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   text-align: center;
 }
 .icon {
   width: 1rem;
   height: 1rem;
-  margin-top: 0.5rem;
+  background-color: transparent;
+}
+.dropdown-menu.show{
+  background-color: #43afff;
+  text-decoration: none;
+}
+.dropdown-menu.show:hover{
+  background-color: #43afff;
+  text-decoration: none;
+}
+.dropdown-item:hover{
+  background-color: #43afff;
+  color: white;
 }
 .content {
   margin-top: 1rem;

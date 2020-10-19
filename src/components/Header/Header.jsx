@@ -1,5 +1,6 @@
 import React from 'react';
 import Arrow from '../../assets/down-arrow.png';
+import { Dropdown, Button } from 'react-bootstrap';
 
 const Title = () => {
     return (
@@ -25,8 +26,17 @@ function getProfileButton(role) {
 
     return (
         <div className="profile_block">
-            <div className="profile-pic rounded-circle">{symbol}</div>
-            <img src={Arrow} alt="down-arrow" className="icon" />
+            {/* <div className="profile-pic rounded-circle">{symbol}</div>
+            <img src={Arrow} alt="down-arrow" className="icon" /> */}
+            <Dropdown>
+                <Button className="profile-pic rounded-circle">{symbol}</Button>
+
+                <Dropdown.Toggle className="icon" split id="dropdown-split-basic" />
+
+                <Dropdown.Menu>
+                    <Dropdown.Item className="logout" href="#" onClick={}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
     )
 }
@@ -35,8 +45,8 @@ const Header = (props) => {
     function getAnchor(role) {
         if (!role) return undefined;
         if (role == 1)
-            return (<a href="#" onClick={()=>{props.handleMenuChange("Post")}}>Post a Job</a>);
-        return (<a href="#" onClick={()=>{props.handleMenuChange("Applied")}}>Applied Jobs</a>);
+            return (<a href="#" onClick={() => { props.handleMenuChange("Post") }}>Post a Job</a>);
+        return (<a href="#" onClick={() => { props.handleMenuChange("Applied") }}>Applied Jobs</a>);
     }
 
     return (

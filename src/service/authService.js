@@ -8,4 +8,8 @@ const signupUser = (payload)=>{
     return axiosInstance.post("/users/signup", payload);
 }
 
-export {loginUser, signupUser};
+const forgotPassword = (payload)=>{
+    return axiosInstance.patch("users/forgot-password", payload);
+}
+
+export {loginUser, signupUser, forgotPassword};

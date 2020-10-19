@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
-import Input from "../../components/Input/Input"
-import Header from "../../components/Header/Header"
+import Input from "../../components/Input/Input";
+import Header from "../../components/Header/Header";
+import ForgotPasswordManager from './dataManager';
 
 class ForgotPassword extends Component {
-    state = {
-        email: ""
+    constructor(props){
+        super(props);
+        this.dataManager = new ForgotPasswordManager();
+        this.state = {
+            email: ""
+        }
     }
 
     handleChange = (e) => {
         this.setState({
             email: e.target.value
+        })
+    }
+
+    handleSubmit = (e) =>{
+        this.dataManager.handleForgot({email : this.state.email})
+        .then(res=>{
+            console.log(res.data);
+            if(res.data.status){
+                
+            }
+        },err=>{
+            console.log(err);
         })
     }
 

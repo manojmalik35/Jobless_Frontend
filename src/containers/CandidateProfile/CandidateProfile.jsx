@@ -23,7 +23,7 @@ class CandidateProfile extends Component {
             str += " > Applied Jobs"
         return (
             <div className="base-path">
-                <a href="javascript:void(0)" onClick={()=>{
+                <a href="#" onClick={()=>{
                     this.handleMenuChange("Available");
                     }}>Home</a>
                 <span>{str}</span>

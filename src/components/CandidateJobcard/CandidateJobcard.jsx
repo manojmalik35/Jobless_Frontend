@@ -11,7 +11,7 @@ const JobCard = (props) => {
 
     return (
         <div className="col-sm-3">
-            <Card>
+            <Card className="job-card">
                 <Card.Body>
                     <Card.Title>{props.job.title}</Card.Title>
                     <Card.Text>{props.job.description}</Card.Text>

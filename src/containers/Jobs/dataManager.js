@@ -1,9 +1,13 @@
-import {getPostedJobs} from '../../service/jobService';
+import {getJobs, getAppliedJobs} from '../../service/jobService';
 
 class GetJobsDataManager{
 
-    getPostedJobs(){
-        return getPostedJobs();
+    getJobs(){
+        return getJobs();
+    }
+
+    getAppliedJobs(){
+        return getAppliedJobs();
     }
 }
 

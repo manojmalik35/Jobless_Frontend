@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Input from "../../components/Input/Input";
 import PostJobDataManager from './dataManager';
-import {postAction} from '../../actions/jobActions';
-import {connect} from 'react-redux';
+import { postAction } from '../../actions/jobActions';
+import { connect } from 'react-redux';
 
 class PostJob extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.dataManager = new PostJobDataManager();
         this.state = {
@@ -22,28 +22,22 @@ class PostJob extends Component {
         })
     }
 
-    handleSubmit = (e)=>{
+    handleSubmit = (e) => {
+        e.preventDefault();
         this.dataManager.handlePostJob({
-            title : this.state.title,
-            description : this.state.description,
-            company : this.state.company,
-            package : this.state.package
-        })
-        .then(res => {
+            title: this.state.title,
+            description: this.state.description,
+            company: this.state.company,
+            package: this.state.package
+        }).then(res => {
             console.log(res.data);
-
-            if (res.data.status){
+            if (res.data.status) {
                 this.props.postAction(res.data.data);
-                if(res.data.data.role == 1){
-                    this.props.history.push("/recruiter-profile");
-                }else{
-                    this.props.history.push("/candidate-profile");
-                }
+                this.props.handleMenuChange("Jobs");
             }
-                
-        })
-        .catch(err => {
+        }).catch(err => {
             console.log(err);
+            console.log(err.message);
         })
     }
 
@@ -69,7 +63,7 @@ class PostJob extends Component {
                         <Input type="text" name="package" value={this.state.package} handleChange={this.handleChange}></Input>
                     </fieldset>
                     <div className="btn-container">
-                        <button className="btn" type="submit">Post</button>
+                        <button className="btn" onClick={this.handleSubmit}>Post</button>
                     </div>
                 </form>
             </div>
@@ -77,7 +71,7 @@ class PostJob extends Component {
     }
 }
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
 
 })
 

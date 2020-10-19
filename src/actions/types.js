@@ -5,12 +5,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const POST_SUCC = "POST_SUCC";
 export const POST_FAIL = "POST_FAIL";
-export const GET_POSTED_JOBS = "GET_POSTED_JOBS";
-
-
-//1. passport photo
-//2. aadhar 
-//3. Pan
-// bijli
-// itr
-// loan track
+export const GET_JOBS = "GET_JOBS";
+export const GET_APPLIED_JOBS = "GET_APPLIED_JOBS";

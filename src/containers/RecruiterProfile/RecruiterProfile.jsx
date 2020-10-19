@@ -38,7 +38,7 @@ class RecruiterProfile extends Component {
         if (this.state.menu == "Jobs")
             return (<Jobs role={1} handleMenuChange={this.handleMenuChange}></Jobs>)
         else if (this.state.menu == "Post")
-            return (<PostJob></PostJob>)
+            return (<PostJob handleMenuChange={this.handleMenuChange}></PostJob>)
     }
 
     render() {
