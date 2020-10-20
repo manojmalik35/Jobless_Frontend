@@ -3,6 +3,7 @@ import Input from "../../components/Input/Input";
 import Header from "../../components/Header/Header";
 import ForgotPasswordManager from './dataManager';
 import { Alert } from 'react-bootstrap';
+import isLoggedIn from '../../hoc/isLoggedIn';
 
 class ForgotPassword extends Component {
     constructor(props) {
@@ -65,4 +66,4 @@ class ForgotPassword extends Component {
     }
 }
 
-export default ForgotPassword;
+export default isLoggedIn(ForgotPassword);

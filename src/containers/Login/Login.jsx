@@ -4,6 +4,7 @@ import Input from '../../components/Input/Input';
 import LoginDataManager from "./dataManager";
 import { loginAction } from "../../actions/authActions";
 import {connect} from 'react-redux';
+import isLoggedIn from "../../hoc/isLoggedIn";
 
 class Login extends Component {
 
@@ -88,4 +89,4 @@ const mapDispatchToProps = {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default isLoggedIn(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -2,6 +2,7 @@ import React from 'react';
 import homeImg from '../../assets/home.jpg';
 import Header from "../../components/Header/Header";
 import {Card, CardDeck} from 'react-bootstrap';
+import isLoggedIn from "../../hoc/isLoggedIn";
 
 const Home = () => {
     return (
@@ -57,4 +58,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default isLoggedIn(Home);

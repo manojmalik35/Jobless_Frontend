@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../components/Header/Header'
 import Jobs from "../Jobs/Jobs";
 import PostJob from "../PostJob/PostJob";
+import requireAuth from '../../hoc/requireAuth';
 
 class RecruiterProfile extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class RecruiterProfile extends Component {
     }
 
     handleMenuChange = (newMenu) => {
-
+        
         this.setState({
             menu: newMenu
         });
@@ -26,9 +27,9 @@ class RecruiterProfile extends Component {
             str += " > Applied Jobs"
         return (
             <div className="base-path">
-                <a href="#" onClick={()=>{
+                <a href="#" onClick={() => {
                     this.handleMenuChange("Jobs");
-                    }}>Home</a>
+                }}>Home</a>
                 <span>{str}</span>
             </div>
         )
@@ -54,4 +55,4 @@ class RecruiterProfile extends Component {
     }
 }
 
-export default RecruiterProfile;
+export default requireAuth(RecruiterProfile);

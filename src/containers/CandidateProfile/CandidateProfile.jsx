@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header'
 import Jobs from "../Jobs/Jobs";
+import requireAuth from '../../hoc/requireAuth';
 
 class CandidateProfile extends Component {
     constructor(props) {
@@ -44,4 +45,4 @@ class CandidateProfile extends Component {
     }
 }
 
-export default CandidateProfile;
+export default requireAuth(CandidateProfile);

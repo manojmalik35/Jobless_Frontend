@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header"
 import ResetPasswordManager from './dataManager';
 import queryString from 'query-string';
 import { Alert } from 'react-bootstrap';
+import isLoggedIn from '../../hoc/isLoggedIn';
 
 class ResetPassword extends Component {
     constructor(props) {
@@ -83,4 +84,4 @@ class ResetPassword extends Component {
     }
 }
 
-export default ResetPassword;
+export default isLoggedIn(ResetPassword);
