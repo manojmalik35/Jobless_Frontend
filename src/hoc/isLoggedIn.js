@@ -11,6 +11,8 @@ export default (ChildComponent) => {
                     return <Redirect to='/recruiter-profile' />;
                 else if (this.props.auth.user.role == 2) 
                     return <Redirect to='/candidate-profile' />;
+                else
+                    return <Redirect to='/admin-profile' />;
             }
 
             return <ChildComponent />;
