@@ -2,25 +2,25 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import CandidateDataManager from './dataManager';
-import {applyJobAction} from '../../actions/applicationActions';
-import {useDispatch} from 'react-redux';
+import { applyJobAction } from '../../actions/applicationActions';
+import { useDispatch } from 'react-redux';
 
 const JobCard = (props) => {
 
     let dataManager = new CandidateDataManager();
     const dispatch = useDispatch();
-    const handleApply = (job_id)=>{
+    const handleApply = (job_id) => {
         // console.log(job_id);
-        dataManager.handleApply({job_id})
-        .then(res=>{
-            console.log(res.data);
-            if(res.data.status){
-                dispatch(applyJobAction({job_id}));
-            }
-        })
-        .catch(err=>{
-            console.log(err);
-        })        
+        dataManager.handleApply({ job_id })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status) {
+                    dispatch(applyJobAction({ job_id }));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return (
@@ -28,10 +28,14 @@ const JobCard = (props) => {
             <Card className="job-card">
                 <Card.Body>
                     <Card.Title>{props.job.title}</Card.Title>
-                    <Card.Text>{props.job.description}</Card.Text>
+                    {props.job.description.length > 38 ?
+                        <Card.Text>{props.job.description.substring(0, 38)}...</Card.Text>
+                        :
+                        <Card.Text>{props.job.description}</Card.Text>
+                    }
                     <div className="company-btn-container">
                         <span>{props.job.company}</span>
-                        {props.applied ? '' : <button className="job-btn" onClick={()=>handleApply(props.job.uuid)}>Apply</button>}
+                        {props.applied ? '' : <button className="job-btn apply" onClick={() => handleApply(props.job.uuid)}>Apply</button>}
                     </div>
                 </Card.Body>
             </Card>

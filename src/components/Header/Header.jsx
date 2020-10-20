@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {logoutAction} from '../../actions/authActions';
 import {clearJobsAction} from '../../actions/jobActions';
 import {useHistory} from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 const Title = () => {
     return (
@@ -42,6 +43,12 @@ const Header = (props) => {
         dispatch(logoutAction());
         dispatch(clearJobsAction());
         history.push("/");
+        toast.success("You have successfully logged out.", {
+            position : "top-center",
+            autoClose : 3000,
+            closeOnClick : true,
+            pauseOnHover : false
+        });
     }
 
     return (

@@ -7,7 +7,7 @@ const ApplicantCard = (props) => {
 
     return (
         <Col md={6}>
-            <Card>
+            <Card className="applicant-card">
                 <Card.Body>
                     <Card.Title>{props.applicant.name}</Card.Title>
                     <Card.Text>{props.applicant.email}</Card.Text>

@@ -61,9 +61,6 @@ function ApplicantsModal(props) {
                 <h4>Total {props.count} applications</h4>
                 {getRows(props.applicants)}
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 }
