@@ -54,12 +54,22 @@ class Jobs extends Component {
                         console.log(err);
                     })
             }
-        }else{
-            if(prevProps.jobs.count != this.props.jobs.count){
-                this.setState({
-                    jobs : this.props.jobs.jobs,
-                    totalCount : this.props.jobs.count
-                })
+        } else {
+            if (prevProps.jobs.count != this.props.jobs.count) {
+                this.dataManager.getJobs({ page: this.state.page })
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.status) {
+                            this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
+                            this.setState({
+                                jobs: this.props.jobs.jobs,
+                                totalCount: res.data.metadata.resultset.count
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
             }
         }
     }

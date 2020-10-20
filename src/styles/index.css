@@ -154,6 +154,9 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.passwords input[type="password"] {
+  width: 95%;
+}
 .login-btn {
   background-color: #37528e;
   border: 2px solid #3c698b;
@@ -197,23 +200,13 @@ p {
   width: 3rem;
   text-align: center;
 }
+.logout {
+  cursor: pointer;
+}
 .icon {
   width: 1rem;
   height: 1rem;
   background-color: transparent;
-}
-.dropdown-menu.show {
-  background-color: #43afff;
-  text-decoration: none;
-  top : 17px;
-}
-.dropdown-menu.show:hover {
-  background-color: #43afff;
-  text-decoration: none;
-}
-.dropdown-item:hover {
-  background-color: #43afff;
-  color: white;
 }
 .content {
   margin-top: 1rem;
@@ -256,10 +249,10 @@ p {
 }
 .apply {
   width: 5rem;
-  height: 2.5rem;
+  height: 2rem;
 }
 .application {
-  width: 10rem;
+  width: 8rem;
 }
 .no-jobs {
   color: gray;
@@ -332,6 +325,17 @@ p {
   top: 45rem;
   left: 41rem;
 }
+.page-item.disabled .page-link {
+  background-color: transparent;
+}
+.page-item.active .page-link {
+  color: black;
+  font-weight: bold;
+  background-color: #d5e9fd;
+}
+.page-item .page-link {
+  background-color: transparent;
+}
 .modal-content {
   left: 11rem;
   border-radius: 22px;
@@ -344,7 +348,7 @@ p {
   height: 80%;
 }
 .container {
-  background-color: #e6e5e5;
+  background-color: #f3eeee;
   border-radius: 3%;
   height: 95%;
   scroll-behavior: smooth;
@@ -352,12 +356,12 @@ p {
   overflow-y: auto;
 }
 .applicant-card {
-  border: 0.5px solid black;
+  border: 0.5px solid #c8c3ca;
   height: 8rem;
   padding: 1rem;
   border-radius: 3%;
 }
-.no-applicants{
+.no-applicants {
   height: 95%;
   background-color: #e6e5e5;
   text-align: center;

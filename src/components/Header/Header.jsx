@@ -1,10 +1,10 @@
 import React from 'react';
-import { Dropdown, Button } from 'react-bootstrap';
+import { Button, Popover, OverlayTrigger } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {logoutAction} from '../../actions/authActions';
-import {clearJobsAction} from '../../actions/jobActions';
-import {useHistory} from 'react-router-dom';
-import {toast} from 'react-toastify';
+import { logoutAction } from '../../actions/authActions';
+import { clearJobsAction } from '../../actions/jobActions';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Title = () => {
     return (
@@ -39,17 +39,25 @@ const Header = (props) => {
     if (auth.isUserLoggedIn) {
         if (auth.user.role == 2) symbol = "C";
     }
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         dispatch(logoutAction());
         dispatch(clearJobsAction());
         history.push("/");
         toast.success("You have successfully logged out.", {
-            position : "top-center",
-            autoClose : 3000,
-            closeOnClick : true,
-            pauseOnHover : false
+            position: "top-center",
+            autoClose: 3000,
+            closeOnClick: true,
+            pauseOnHover: false
         });
     }
+
+    const popover = (
+        <Popover id="popover-basic">
+            <Popover.Content className="logout" onClick={handleLogout}>
+                Logout
+          </Popover.Content>
+        </Popover>
+    );
 
     return (
         <nav>
@@ -59,15 +67,9 @@ const Header = (props) => {
                 {getButton(props.loginButton)}
                 {auth.isUserLoggedIn ?
                     <div className="profile_block">
-                        <Dropdown>
+                        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                             <Button className="profile-pic rounded-circle">{symbol}</Button>
-
-                            <Dropdown.Toggle className="icon" split id="dropdown-split-basic" />
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item className="logout" href="#" onClick={handleLogout}>Logout</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                        </OverlayTrigger>
                     </div>
                     : ''}
             </div>
