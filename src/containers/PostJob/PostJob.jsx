@@ -3,6 +3,7 @@ import Input from "../../components/Input/Input";
 import PostJobDataManager from './dataManager';
 import { postAction } from '../../actions/jobActions';
 import { connect } from 'react-redux';
+import validator from '../../common/validation';
 
 class PostJob extends Component {
     constructor(props) {
@@ -36,8 +37,7 @@ class PostJob extends Component {
                 this.props.handleMenuChange("Jobs");
             }
         }).catch(err => {
-            console.log(err);
-            console.log(err.message);
+            validator(err);
         })
     }
 

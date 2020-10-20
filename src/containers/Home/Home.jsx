@@ -3,8 +3,15 @@ import homeImg from '../../assets/home.jpg';
 import Header from "../../components/Header/Header";
 import {Card, CardDeck} from 'react-bootstrap';
 import isLoggedIn from "../../hoc/isLoggedIn";
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
+
+    const history = useHistory();
+    const getStarted = () =>{
+        history.push("/signup");
+    }
+
     return (
         <div className="base home">
             <Header loginButton={true}></Header>
@@ -15,7 +22,7 @@ const Home = () => {
                             Welcome to<br />
                         Job<span style={{ color: "#43AFFF" }}>Less</span>
                         </div>
-                        <button className="btn home-btn">Get Started</button>
+                        <button className="btn home-btn" onClick={getStarted}>Get Started</button>
                     </div>
                     <div className="img-container">
                         <img src={homeImg} alt="home-img" className="home-img" />

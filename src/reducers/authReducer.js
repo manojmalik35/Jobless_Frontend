@@ -1,4 +1,4 @@
-import { LOGIN_SUCC, LOGIN_FAIL, SIGNUP_SUCC, SIGNUP_FAIL, LOGOUT } from '../actions/types';
+import { LOGIN_SUCC, SIGNUP_SUCC, LOGOUT } from '../actions/types';
 import axiosInstance from '../service/createService';
 
 const initialState = {
@@ -17,28 +17,18 @@ const authReducer = (state = initialState, action) => {
                 isUserLoggedIn: true,
                 user: payload
             };
-        case LOGIN_FAIL:
-            return {
-                isUserLoggedIn: false,
-                user: {}
-            };
         case SIGNUP_SUCC:
             axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${action.payload.authToken}`;
             return {
                 isUserLoggedIn: true,
                 user: payload
             };
-        case SIGNUP_FAIL:
-            return {
-                isUserLoggedIn: false,
-                user: {}
-            };
         case LOGOUT :
             axiosInstance.defaults.headers.common["Authorization"] = undefined;
             return {
                 isUserLoggedIn : false,
                 user : {}
-            }
+            };
         case 'persist/REHYDRATE':
             // Check if Payload Exists
             if (action.payload) {

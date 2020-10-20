@@ -1,4 +1,4 @@
-import { POST_SUCC, GET_JOBS } from './types';
+import { POST_SUCC, GET_JOBS, CLEAR_JOBS } from './types';
 
 export const postAction = (payload) => (dispatch) => {
 
@@ -16,4 +16,13 @@ export const getJobsAction = (payload) =>(dispatch)=>{
         payload
     })
 }
+
+export const clearJobsAction = () =>(dispatch)=>{
+
+    dispatch({
+        type : CLEAR_JOBS
+    })
+}
+
+
 

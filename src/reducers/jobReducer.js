@@ -1,4 +1,4 @@
-import {POST_SUCC, POST_FAIL, GET_JOBS, GET_APPLIED_JOBS, APPLY_JOB} from '../actions/types';
+import {POST_SUCC, GET_JOBS, GET_APPLIED_JOBS, APPLY_JOB, CLEAR_JOBS} from '../actions/types';
 
 const initialState = {
     count : 0,
@@ -18,12 +18,6 @@ const initialState = {
                     ...state,
                     jobs : arr,
                     count : oldCount + 1
-                };
-            case POST_FAIL:
-                return {
-                    ...state,
-                    jobs : [],
-                    count : 0
                 };
             case GET_JOBS:
                 return {
@@ -46,6 +40,12 @@ const initialState = {
                     ...state,
                     jobs : arr,
                     count : oldCount - 1
+                };
+            case CLEAR_JOBS :
+                return {
+                    ...state,
+                    jobs : [],
+                    count : 0
                 }
             default : 
                 return state;

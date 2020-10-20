@@ -18,7 +18,6 @@ const JobCard = (props) => {
     useEffect(()=>{
         dataManager.handleGetApplicants({job_id : props.job.uuid})
         .then(res=>{
-            console.log(res.data);
             if(res.data.status){
                 setApplicants({
                     count : res.data.data.length,

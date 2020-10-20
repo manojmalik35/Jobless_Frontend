@@ -2,6 +2,7 @@ import React from 'react';
 import { Dropdown, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {logoutAction} from '../../actions/authActions';
+import {clearJobsAction} from '../../actions/jobActions';
 import {useHistory} from 'react-router-dom';
 
 const Title = () => {
@@ -39,6 +40,7 @@ const Header = (props) => {
     }
     const handleLogout = ()=>{
         dispatch(logoutAction());
+        dispatch(clearJobsAction());
         history.push("/");
     }
 

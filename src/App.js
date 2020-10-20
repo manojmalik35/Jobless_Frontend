@@ -8,21 +8,23 @@ import RecruiterProfile from './containers/RecruiterProfile/RecruiterProfile';
 import CandidateProfile from './containers/CandidateProfile/CandidateProfile';
 import Home from "./containers/Home/Home";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
     return (
         <React.Fragment>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/signup" component={Signup}/>
-                    <Route path="/forgot-password" component={ForgotPassword}/>
-                    <Route path="/reset-password" component={ResetPassword}/>
-                    <Route path="/recruiter-profile" component={RecruiterProfile}/>
-                    <Route path="/candidate-profile" component={CandidateProfile}/>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/signup" component={Signup} />
+                    <Route path="/forgot-password" component={ForgotPassword} />
+                    <Route path="/reset-password" component={ResetPassword} />
+                    <Route path="/recruiter-profile" component={RecruiterProfile} />
+                    <Route path="/candidate-profile" component={CandidateProfile} />
                 </Switch>
             </BrowserRouter>
+            <ToastContainer/>
         </React.Fragment>
     );
 }

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import SignupDataManager from "./dataManager";
-import {connect} from 'react-redux';
-import {signupAction} from '../../actions/authActions';
+import { connect } from 'react-redux';
+import { signupAction } from '../../actions/authActions';
 import isLoggedIn from '../../hoc/isLoggedIn';
+import validator from '../../common/validation';
 
 class Signup extends Component {
     constructor(props) {
@@ -32,26 +33,27 @@ class Signup extends Component {
 
     handleSubmit = (e) => {
         this.dataManager.handleSignup({
-            email : this.state.email,
-            password : this.state.password,
-            name : this.state.name,
-            role : this.state.role,
-            phone : this.state.phone
+            email: this.state.email,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword,
+            name: this.state.name,
+            role: this.state.role,
+            phone: this.state.phone
         })
-        .then(res=>{
-            console.log(res.data);
-            if(res.data.status){
-                this.props.signupAction(res.data.data);
-                if(res.data.data.role == 1){
-                    this.props.history.push("/recruiter-profile");
-                }else{
-                    this.props.history.push("/candidate-profile");
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status) {
+                    this.props.signupAction(res.data.data);
+                    if (res.data.data.role == 1) {
+                        this.props.history.push("/recruiter-profile");
+                    } else {
+                        this.props.history.push("/candidate-profile");
+                    }
                 }
-            }
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+            })
+            .catch(err => {
+                validator(err);
+            })
     };
 
     checkActiveButton = (role) => {
@@ -95,10 +97,10 @@ class Signup extends Component {
                                 <Input type="password" name="confirmPassword" value={this.state.confirmPassword} handleChange={this.handleChange} required={true}></Input>
                             </fieldset>
                         </div>
-                            <fieldset>
-                                <label>Phone no.</label>
-                                <Input type="tel" name="phone" value={this.state.phone} maxlength="10" handleChange={this.handleChange}></Input>
-                            </fieldset>
+                        <fieldset>
+                            <label>Phone no.</label>
+                            <Input type="tel" name="phone" value={this.state.phone} maxlength="10" handleChange={this.handleChange}></Input>
+                        </fieldset>
                         <div className="btn-container">
                             <button className="btn" type="button" onClick={this.handleSubmit}> Signup </button>
                         </div>
@@ -110,7 +112,7 @@ class Signup extends Component {
     }
 }
 
-const mapStateToProps = state=> {
+const mapStateToProps = state => {
     return {}
 }
 

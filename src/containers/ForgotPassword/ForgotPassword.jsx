@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import ForgotPasswordManager from './dataManager';
 import { Alert } from 'react-bootstrap';
 import isLoggedIn from '../../hoc/isLoggedIn';
+import validator from '../../common/validation';
 
 class ForgotPassword extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class ForgotPassword extends Component {
                     })
                 }
             }, err => {
-                console.log(err);
+                validator(err);
             })
     }
 

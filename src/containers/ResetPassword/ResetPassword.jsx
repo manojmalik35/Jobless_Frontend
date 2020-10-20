@@ -5,6 +5,7 @@ import ResetPasswordManager from './dataManager';
 import queryString from 'query-string';
 import { Alert } from 'react-bootstrap';
 import isLoggedIn from '../../hoc/isLoggedIn';
+import validator from '../../common/validation';
 
 class ResetPassword extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class ResetPassword extends Component {
                 }
             })
             .catch(err => {
-                console.log(err);
+                validator(err);
             })
     }
 

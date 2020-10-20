@@ -3,8 +3,9 @@ import Header from '../../components/Header/Header';
 import Input from '../../components/Input/Input';
 import LoginDataManager from "./dataManager";
 import { loginAction } from "../../actions/authActions";
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import isLoggedIn from "../../hoc/isLoggedIn";
+import validator from '../../common/validation';
 
 class Login extends Component {
 
@@ -26,23 +27,26 @@ class Login extends Component {
         })
     }
 
+
+
     handleSubmit = (e) => {
+
         this.dataManager.handleLogin({ email: this.state.email, password: this.state.password })
             .then(res => {
                 console.log(res.data);
 
-                if (res.data.status){
+                if (res.data.status) {
                     this.props.loginAction(res.data.data);
-                    if(res.data.data.role == 1){
+                    if (res.data.data.role == 1) {
                         this.props.history.push("/recruiter-profile");
-                    }else{
+                    } else {
                         this.props.history.push("/candidate-profile");
                     }
                 }
-                    
+
             })
             .catch(err => {
-                console.log(err);
+                validator(err);
             })
 
     }
@@ -80,7 +84,7 @@ class Login extends Component {
 }
 
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
 
 })
 
