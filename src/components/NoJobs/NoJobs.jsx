@@ -17,7 +17,7 @@ function getButton(props) {
             <React.Fragment>
                 <p>Your applied jobs will show here</p>
                 <div className="btn-container">
-                    <button className="btn" onClick={() => props.handleMenuChange("Jobs")}>See All Jobs</button>
+                    <button className="btn" onClick={() => props.handleMenuChange("Available")}>See All Jobs</button>
                 </div>
             </React.Fragment>
         )
@@ -37,7 +37,7 @@ function getButton(props) {
 const NoJobs = (props) => {
     return (
         <div className="no-jobs">
-            <img src={PostJobImage} alt="post a job" className="post-job-img" />
+            <img src={PostJobImage} alt="No jobs" className="post-job-img" />
             {getButton(props)}
         </div>
     )

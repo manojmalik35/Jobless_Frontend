@@ -1,39 +1,36 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Card } from 'react-bootstrap';
 import ApplicantsModal from '../Modal/Modal';
+import RecruiterDataManager from './dataManager';
 
 const JobCard = (props) => {
 
     const [modalShow, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    let applicants = [
-        {
-            "uuid": "229dd89f-3754-411b-9dae-a3751640ba23",
-            "name": "Sharma",
-            "email": "seek@gmail.com",
-            "role": 2,
-            "phone": 989676676
-        },
-        {
-            "uuid": "687d861d-0b5e-4c1c-8d87-d60eabacbde5",
-            "name": "Prateek",
-            "email": "tprateek@gmail.com",
-            "role": 2,
-            "phone": null
-        },
-        {
-            "uuid": "a226820f-6a7e-46d1-afbd-bd682b71fd0d",
-            "name": "Jenil",
-            "email": "jenil@gmail.com",
-            "role": 2,
-            "phone": 7865345612
-        },{},{},{},{}
-    ];
+    const [applicants, setApplicants] = useState({
+        count : 0,
+        applicants : []
+    });
+    const dataManager = new RecruiterDataManager();
 
-    let count = 3;
+    useEffect(()=>{
+        dataManager.handleGetApplicants({job_id : props.job.uuid})
+        .then(res=>{
+            console.log(res.data);
+            if(res.data.status){
+                setApplicants({
+                    count : res.data.data.length,
+                    applicants : res.data.data
+                });
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+
+    },[]);
 
     return (
         <div className="col-sm-3">
@@ -44,7 +41,7 @@ const JobCard = (props) => {
                     <div className="company-btn-container">
                         <span>{props.job.company}</span>
                         <button className="job-btn" id={props.job.uuid} onClick={handleShow}>View All Applications</button>
-                        <ApplicantsModal key={props.job.uuid} show={modalShow} onHide={handleClose} count={count} applicants={applicants}></ApplicantsModal>
+                        <ApplicantsModal key={props.job.uuid} show={modalShow} onHide={handleClose} count={applicants.count} applicants={applicants.applicants}></ApplicantsModal>
                     </div>
                 </Card.Body>
             </Card>

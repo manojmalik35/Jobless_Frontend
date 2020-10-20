@@ -19,27 +19,6 @@ function getButton(loginButton) {
     return (<a href="/login" className="login-btn">Login/Signup</a>)
 }
 
-function getProfileButton(role) {
-    if (!role) return undefined;
-    let symbol = "R";
-    if (role == 2)
-        symbol = "C";
-
-    return (
-        <div className="profile_block">
-            <Dropdown>
-                <Button className="profile-pic rounded-circle">{symbol}</Button>
-
-                <Dropdown.Toggle className="icon" split id="dropdown-split-basic" />
-
-                <Dropdown.Menu>
-                    <Dropdown.Item className="logout" href="#">Logout</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        </div>
-    )
-}
-
 function getAnchor(props) {
     let { role } = props;
     if (!role) return undefined;

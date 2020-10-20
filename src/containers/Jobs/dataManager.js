@@ -1,4 +1,5 @@
-import {getJobs, getAppliedJobs} from '../../service/jobService';
+import {getJobs} from '../../service/jobService';
+import {getAppliedJobs} from '../../service/applicationService';
 
 class GetJobsDataManager{
 

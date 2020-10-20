@@ -3,7 +3,8 @@ import RecruiterJobcard from "../../components/RecruiterJobcard/RecruiterJobcard
 import CandidateJobcard from "../../components/CandidateJobcard/CandidateJobcard";
 import NoJobs from "../../components/NoJobs/NoJobs";
 import GetJobsDataManager from './dataManager';
-import { getJobsAction, getAppliedJobsAction } from '../../actions/jobActions';
+import { getJobsAction } from '../../actions/jobActions';
+import {getAppliedJobsAction} from '../../actions/applicationActions';
 import { connect } from 'react-redux';
 
 class Jobs extends Component {

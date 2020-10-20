@@ -1,4 +1,4 @@
-import { POST_SUCC, GET_JOBS, GET_APPLIED_JOBS} from './types';
+import { POST_SUCC, GET_JOBS } from './types';
 
 export const postAction = (payload) => (dispatch) => {
 
@@ -17,10 +17,3 @@ export const getJobsAction = (payload) =>(dispatch)=>{
     })
 }
 
-export const getAppliedJobsAction = (payload) => (dispatch)=>{
-
-    dispatch({
-        type : GET_APPLIED_JOBS,
-        payload
-    })
-}

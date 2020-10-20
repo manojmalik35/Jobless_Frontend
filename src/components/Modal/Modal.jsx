@@ -58,7 +58,7 @@ function ApplicantsModal(props) {
           </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Total {props.count} applicants</h4>
+                <h4>Total {props.count} applications</h4>
                 {getRows(props.applicants)}
             </Modal.Body>
             <Modal.Footer>

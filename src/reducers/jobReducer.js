@@ -1,4 +1,4 @@
-import {POST_SUCC, POST_FAIL, GET_JOBS, GET_APPLIED_JOBS} from '../actions/types';
+import {POST_SUCC, POST_FAIL, GET_JOBS, GET_APPLIED_JOBS, APPLY_JOB} from '../actions/types';
 
 const initialState = {
     count : 0,
@@ -9,10 +9,10 @@ const initialState = {
   const jobReducer = (state = initialState, action)=>{
         const {type, payload} = action;
 
+        let arr = state.jobs;
+        let oldCount = state.count;
         switch(type){
             case POST_SUCC : 
-                let arr = state.jobs;
-                let oldCount = state.count;
                 arr.push(payload);
                 return {
                     ...state,
@@ -36,6 +36,16 @@ const initialState = {
                     ...state,
                     jobs : payload.jobs,
                     count : payload.count
+                };
+            case APPLY_JOB :
+                arr = state.jobs;
+                arr = arr.filter(job=>{
+                    return job.uuid != payload.job_id;
+                })
+                return{
+                    ...state,
+                    jobs : arr,
+                    count : oldCount - 1
                 }
             default : 
                 return state;

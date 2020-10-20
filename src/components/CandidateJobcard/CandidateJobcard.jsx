@@ -1,13 +1,27 @@
 
 import React from 'react';
 import { Card } from 'react-bootstrap';
-
-function getButton(props) {
-    if (props.applied) return undefined;
-    return (<button className="job-btn" id={props.job.uuid}>Apply</button>)
-}
+import CandidateDataManager from './dataManager';
+import {applyJobAction} from '../../actions/applicationActions';
+import {useDispatch} from 'react-redux';
 
 const JobCard = (props) => {
+
+    let dataManager = new CandidateDataManager();
+    const dispatch = useDispatch();
+    const handleApply = (job_id)=>{
+        // console.log(job_id);
+        dataManager.handleApply({job_id})
+        .then(res=>{
+            console.log(res.data);
+            if(res.data.status){
+                dispatch(applyJobAction({job_id}));
+            }
+        })
+        .catch(err=>{
+            console.log(err);
+        })        
+    }
 
     return (
         <div className="col-sm-3">
@@ -17,7 +31,7 @@ const JobCard = (props) => {
                     <Card.Text>{props.job.description}</Card.Text>
                     <div className="company-btn-container">
                         <span>{props.job.company}</span>
-                        {getButton(props)}
+                        {props.applied ? '' : <button className="job-btn" onClick={()=>handleApply(props.job.uuid)}>Apply</button>}
                     </div>
                 </Card.Body>
             </Card>

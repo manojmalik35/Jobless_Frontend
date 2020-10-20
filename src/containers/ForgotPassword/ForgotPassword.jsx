@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import Input from "../../components/Input/Input";
 import Header from "../../components/Header/Header";
 import ForgotPasswordManager from './dataManager';
+import { Alert } from 'react-bootstrap';
 
 class ForgotPassword extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.dataManager = new ForgotPasswordManager();
         this.state = {
-            email: ""
+            email: "",
+            submitted: false
         }
     }
 
@@ -18,16 +20,18 @@ class ForgotPassword extends Component {
         })
     }
 
-    handleSubmit = (e) =>{
-        this.dataManager.handleForgot({email : this.state.email})
-        .then(res=>{
-            console.log(res.data);
-            if(res.data.status){
-                
-            }
-        },err=>{
-            console.log(err);
-        })
+    handleSubmit = (e) => {
+        this.dataManager.handleForgot({ email: this.state.email })
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status) {
+                    this.setState({
+                        submitted : true
+                    })
+                }
+            }, err => {
+                console.log(err);
+            })
     }
 
     render() {
@@ -40,14 +44,20 @@ class ForgotPassword extends Component {
                     <form>
                         <fieldset>
                             <label>Email address</label>
-                            <Input type="email" name="email"value={this.state.email} handleChange={this.handleChange} required={true}></Input>
+                            <Input type="email" name="email" value={this.state.email} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <div className="error-container hidden">
                             <p className="error">Incorrect email address or password.</p>
                         </div>
-                        <div className="btn-container">
-                            <button className="btn" type="button" onClick={this.handleSubmit}>Submit</button>
-                        </div>
+                        {this.state.submitted ?
+                            <Alert variant='success'>
+                                Your email has been sent successfully.
+                          </Alert>
+                            :
+                            <div className="btn-container">
+                                <button className="btn" type="button" onClick={this.handleSubmit}>Submit</button>
+                            </div>
+                        }
                     </form>
                 </div>
             </div>

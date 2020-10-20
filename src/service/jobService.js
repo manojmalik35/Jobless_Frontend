@@ -8,8 +8,4 @@ const getJobs = ()=>{
     return axiosInstance.get("/jobs");
 }
 
-const getAppliedJobs = ()=>{
-    return axiosInstance.get("/application");
-}
-
-export {postJob, getJobs, getAppliedJobs};
+export {postJob, getJobs};
