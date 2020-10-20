@@ -15,8 +15,7 @@ export default (err)=>{
                 toast.error(errors[key], toastOptions);
             }
         } else {
-            const id = toast.error(errors, toastOptions);
-            console.log(id);
+            toast.error(errors, toastOptions);
         }
     }
 }
