@@ -49,7 +49,7 @@ class AdminLogin extends Component {
             <div className="base">
                 <Header></Header>
                 <div className="base-form login">
-                    <h3>Login</h3>
+                    <h3>Login as Admin</h3>
                     <form>
                         <fieldset>
                             <label>Email address*</label>
