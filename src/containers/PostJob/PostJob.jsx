@@ -31,7 +31,6 @@ class PostJob extends Component {
             company: this.state.company,
             package: this.state.package
         }).then(res => {
-            console.log(res.data);
             if (res.data.status) {
                 this.props.postAction(res.data.data);
                 this.props.handleMenuChange("Jobs");

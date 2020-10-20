@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import isLoggedIn from "../../hoc/isLoggedIn";
 import validator from '../../common/validation';
 
-class Login extends Component {
+class AdminLogin extends Component {
 
     constructor(props) {
         super(props);
@@ -35,13 +35,8 @@ class Login extends Component {
             .then(res => {
                 if (res.data.status) {
                     this.props.loginAction(res.data.data);
-                    if (res.data.data.role == 1) {
-                        this.props.history.push("/recruiter-profile");
-                    } else {
-                        this.props.history.push("/candidate-profile");
-                    }
+                    this.props.history.push("/admin-profile");
                 }
-
             })
             .catch(err => {
                 validator(err);
@@ -88,4 +83,4 @@ const mapDispatchToProps = {
 }
 
 
-export default isLoggedIn(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default isLoggedIn(connect(mapStateToProps, mapDispatchToProps)(AdminLogin));

@@ -35,7 +35,6 @@ class ResetPassword extends Component {
             token: token
         })
             .then(res => {
-                console.log(res.data);
                 if (res.data.status) {
                     this.setState({
                         submitted: true

@@ -25,7 +25,6 @@ class ForgotPassword extends Component {
     handleSubmit = (e) => {
         this.dataManager.handleForgot({ email: this.state.email })
             .then(res => {
-                console.log(res.data);
                 if (res.data.status) {
                     this.setState({
                         submitted : true

@@ -41,7 +41,6 @@ class Signup extends Component {
             phone: this.state.phone
         })
             .then(res => {
-                console.log(res.data);
                 if (res.data.status) {
                     this.props.signupAction(res.data.data);
                     if (res.data.data.role == 1) {

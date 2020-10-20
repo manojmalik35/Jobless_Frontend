@@ -16,4 +16,8 @@ const resetPassword = (payload)=>{
     return axiosInstance.patch("users/reset-password", payload);
 }
 
-export {loginUser, signupUser, forgotPassword, resetPassword};
+const adminLogin = (payload)=>{
+    return axiosInstance.post("/users/login/admin", payload);
+}
+
+export {loginUser, signupUser, forgotPassword, resetPassword, adminLogin};

@@ -25,7 +25,6 @@ class Jobs extends Component {
             if (this.props.type != "Applied") {
                 this.dataManager.getJobs({ page: this.state.page })
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
@@ -35,13 +34,11 @@ class Jobs extends Component {
                         }
                     })
                     .catch(err => {
-                        console.log(err);
                     })
             } else {
 
                 this.dataManager.getAppliedJobs({ page: this.state.page })
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.status) {
                             this.props.getAppliedJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
@@ -51,14 +48,12 @@ class Jobs extends Component {
                         }
                     })
                     .catch(err => {
-                        console.log(err);
                     })
             }
         } else {
             if (prevProps.jobs.count != this.props.jobs.count) {
                 this.dataManager.getJobs({ page: this.state.page })
                     .then(res => {
-                        console.log(res.data);
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
@@ -68,7 +63,6 @@ class Jobs extends Component {
                         }
                     })
                     .catch(err => {
-                        console.log(err);
                     })
             }
         }
@@ -78,7 +72,6 @@ class Jobs extends Component {
 
         this.dataManager.getJobs({ page: this.state.page })
             .then(res => {
-                console.log(res.data);
                 if (res.data.status) {
                     this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                     this.setState({
@@ -88,7 +81,6 @@ class Jobs extends Component {
                 }
             })
             .catch(err => {
-                console.log(err);
             })
 
     }
