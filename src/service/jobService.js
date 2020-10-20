@@ -4,8 +4,8 @@ const postJob = (payload) =>{
     return axiosInstance.post("/jobs", payload);
 }
 
-const getJobs = ()=>{
-    return axiosInstance.get("/jobs");
+const getJobs = (payload)=>{
+    return axiosInstance.get(`/jobs?page=${payload.page}`);
 }
 
 export {postJob, getJobs};

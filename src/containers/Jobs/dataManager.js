@@ -3,12 +3,12 @@ import {getAppliedJobs} from '../../service/applicationService';
 
 class GetJobsDataManager{
 
-    getJobs(){
-        return getJobs();
+    getJobs(payload){
+        return getJobs(payload);
     }
 
-    getAppliedJobs(){
-        return getAppliedJobs();
+    getAppliedJobs(payload){
+        return getAppliedJobs(payload);
     }
 }
 

@@ -227,7 +227,7 @@ p {
 .job-card {
   background-color: white;
   color: black;
-  height: 11rem;
+  height: 10rem;
   border-radius: 5%;
   box-shadow: 0px 1px 2px 0px lightgray;
   padding: 1rem;
@@ -326,4 +326,9 @@ p {
 }
 .home-card .card-title{
   color : #43afff;
+}
+.pagination{
+  position: absolute;
+  top : 45rem;
+  left : 41rem;
 }

@@ -4,29 +4,33 @@ import CandidateJobcard from "../../components/CandidateJobcard/CandidateJobcard
 import NoJobs from "../../components/NoJobs/NoJobs";
 import GetJobsDataManager from './dataManager';
 import { getJobsAction } from '../../actions/jobActions';
-import {getAppliedJobsAction} from '../../actions/applicationActions';
+import { getAppliedJobsAction } from '../../actions/applicationActions';
 import { connect } from 'react-redux';
+import Paginate from '../../components/Pagination/Pagination';
 
 class Jobs extends Component {
     constructor(props) {
         super(props);
         this.dataManager = new GetJobsDataManager();
         this.state = {
-            jobs: []
+            jobs: [],
+            totalCount: 0,
+            page: 1
         }
 
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.type != prevProps.type) {
+        if (this.props.type != prevProps.type || this.state.page != prevState.page) {
             if (this.props.type != "Applied") {
-                this.dataManager.getJobs()
+                this.dataManager.getJobs({ page: this.state.page })
                     .then(res => {
                         console.log(res.data);
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                jobs: this.props.jobs.jobs
+                                jobs: this.props.jobs.jobs,
+                                totalCount: res.data.metadata.resultset.count
                             })
                         }
                     })
@@ -35,13 +39,14 @@ class Jobs extends Component {
                     })
             } else {
 
-                this.dataManager.getAppliedJobs()
+                this.dataManager.getAppliedJobs({ page: this.state.page })
                     .then(res => {
                         console.log(res.data);
                         if (res.data.status) {
                             this.props.getAppliedJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                jobs: this.props.jobs.jobs
+                                jobs: this.props.jobs.jobs,
+                                totalCount: res.data.metadata.resultset.count
                             })
                         }
                     })
@@ -49,18 +54,26 @@ class Jobs extends Component {
                         console.log(err);
                     })
             }
+        }else{
+            if(prevProps.jobs.count != this.props.jobs.count){
+                this.setState({
+                    jobs : this.props.jobs.jobs,
+                    totalCount : this.props.jobs.count
+                })
+            }
         }
     }
 
     componentDidMount() {
 
-        this.dataManager.getJobs()
+        this.dataManager.getJobs({ page: this.state.page })
             .then(res => {
                 console.log(res.data);
                 if (res.data.status) {
                     this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                     this.setState({
-                        jobs: this.props.jobs.jobs
+                        jobs: this.props.jobs.jobs,
+                        totalCount: res.data.metadata.resultset.count
                     })
                 }
             })
@@ -68,6 +81,12 @@ class Jobs extends Component {
                 console.log(err);
             })
 
+    }
+
+    handlePageChange = (newPage) => {
+        this.setState({
+            page: newPage
+        });
     }
 
     getHeading = () => {
@@ -138,7 +157,9 @@ class Jobs extends Component {
             <div className="jobs-container">
                 {this.getHeading()}
                 {this.getRows()}
-                {/* <Pagination></Pagination> */}
+                {this.state.totalCount == 0 ? '' :
+                    <Paginate totalJobs={this.state.totalCount} active={this.state.page} handlePageChange={this.handlePageChange}></Paginate>
+                }
             </div>
         );
     }

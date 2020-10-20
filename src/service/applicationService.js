@@ -4,8 +4,8 @@ const applyJob = (payload) =>{
     return axiosInstance.post("/application/new", payload);
 }
 
-const getAppliedJobs = ()=>{
-    return axiosInstance.get("/application");
+const getAppliedJobs = (payload)=>{
+    return axiosInstance.get(`/application?page=${payload.page}`);
 }
 
 const getApplicants = (payload)=>{
