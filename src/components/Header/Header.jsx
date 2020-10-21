@@ -23,10 +23,19 @@ function getButton(loginButton) {
 
 function getAnchor(props) {
     let { role } = props;
-    if (!role) return undefined;
+    if (!role && role != 0) return undefined;
     if (role == 1)
         return (<a href="#" onClick={() => { props.handleMenuChange("Post") }}>Post a Job</a>);
-    return (<a href="#" onClick={() => { props.handleMenuChange("Applied") }}>Applied Jobs</a>);
+    if (role == 2)
+        return (<a href="#" onClick={() => { props.handleMenuChange("Applied") }}>Applied Jobs</a>);
+    else {
+        return (
+            <div className="header-anchors">
+                <a href="#" onClick={() => { props.handleMenuChange("Recruiters") }}>Recruiters</a>
+                <a href="#" onClick={() => { props.handleMenuChange("Candidates") }}>Candidates</a>
+            </div>
+        )
+    }
 }
 
 const Header = (props) => {
@@ -38,6 +47,7 @@ const Header = (props) => {
     const history = useHistory();
     if (auth.isUserLoggedIn) {
         if (auth.user.role == 2) symbol = "C";
+        else if (auth.user.role == 0) symbol = "A";
     }
     const handleLogout = () => {
         dispatch(logoutAction());

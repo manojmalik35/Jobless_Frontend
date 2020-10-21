@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header/Header'
-import Jobs from "../Jobs/Jobs";
-import PostJob from "../PostJob/PostJob";
+import Header from '../../components/Header/Header';
 import requireAuth from '../../hoc/requireAuthAdmin';
+import AdminJobs from '../AdminJobs/AdminJobs';
+import Users from '../Users/Users';
 
 class AdminProfile extends Component {
     constructor(props) {
@@ -21,10 +21,10 @@ class AdminProfile extends Component {
 
     getBreadcrumb = () => {
         let str = "";
-        if (this.state.menu == "Post")
-            str += " > Post a Job";
-        else if (this.state.menu == "Applied")
-            str += " > Applied Jobs"
+        if (this.state.menu == "Recruiters")
+            str += " > Recruiters";
+        else if (this.state.menu == "Candidates")
+            str += " > Candidates"
         return (
             <div className="base-path">
                 <a href="#" onClick={() => {
@@ -35,20 +35,23 @@ class AdminProfile extends Component {
         )
     }
 
-    getJobs = () => {
+    getContent = () => {
         if (this.state.menu == "Jobs")
-            return (<Jobs role={1} handleMenuChange={this.handleMenuChange}></Jobs>)
-        else if (this.state.menu == "Post")
-            return (<PostJob handleMenuChange={this.handleMenuChange}></PostJob>)
+            return (<AdminJobs handleMenuChange={this.handleMenuChange} />)
+        else if (this.state.menu == "Recruiters")
+            return (<Users role={1} handleMenuChange={this.handleMenuChange}/>)
+        else
+            return (<Users role={2} handleMenuChange={this.handleMenuChange}/>)
+
     }
 
     render() {
         return (
             <div className="base">
-                <Header role={1} handleMenuChange={this.handleMenuChange}></Header>
+                <Header role={0} handleMenuChange={this.handleMenuChange}></Header>
                 <div className="content">
                     {this.getBreadcrumb()}
-                    {this.getJobs()}
+                    {this.getContent()}
                 </div>
             </div>
         );

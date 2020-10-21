@@ -1,4 +1,4 @@
-import {POST_SUCC, GET_JOBS, GET_APPLIED_JOBS, APPLY_JOB, CLEAR_JOBS} from '../actions/types';
+import {POST_SUCC, GET_JOBS, GET_APPLIED_JOBS, APPLY_JOB, CLEAR_JOBS, DELETE_JOB} from '../actions/types';
 
 const initialState = {
     count : 0,
@@ -29,7 +29,7 @@ const initialState = {
                 };
             case GET_APPLIED_JOBS :
                 return{
-                    // ...state,
+                    ...state,
                     jobs : payload.jobs,
                     count : payload.count,
                     type : "Applied"
@@ -49,6 +49,16 @@ const initialState = {
                     ...state,
                     jobs : [],
                     count : 0
+                };
+            case DELETE_JOB :
+                arr = state.jobs;
+                arr = arr.filter(job=>{
+                    return job.uuid != payload.job_id;
+                })
+                return {
+                    ...state,
+                    jobs : arr,
+                    count : oldCount - 1
                 }
             default : 
                 return state;

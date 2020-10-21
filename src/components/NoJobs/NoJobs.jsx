@@ -2,8 +2,18 @@ import React from 'react';
 import PostJobImage from "../../assets/post-job.jpg";
 
 function getButton(props) {
-    let {role, type} = props;
-    if (role == 1) {
+    let { role, type } = props;
+    if (role == 0) {
+        return (
+            <React.Fragment>
+                <p>All jobs will show here</p>
+                <div className="btn-container">
+                    <button className="btn" onClick={() => props.handleMenuChange("Recruiters")}>View Recruiters</button>
+                    <button className="btn" onClick={() => props.handleMenuChange("Candidates")}>View Candidates</button>
+                </div>
+            </React.Fragment>
+        )
+    } else if (role == 1) {
         return (
             <React.Fragment>
                 <p>Your posted jobs will show here</p>

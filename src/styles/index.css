@@ -178,7 +178,12 @@ p {
   display: flex;
   padding-top: 0.5rem;
   justify-content: space-between;
-  width: 16rem;
+  width: 21rem;
+}
+.header-anchors {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
 }
 .header-profile a {
   color: white;
@@ -324,6 +329,13 @@ p {
   position: absolute;
   top: 45rem;
   left: 41rem;
+}
+.modal-footer{
+  height: 3.8rem;
+}
+.modal-footer .pagination {
+  top: 36.5rem;
+  left: 14rem;
 }
 .page-item.disabled .page-link {
   background-color: transparent;
