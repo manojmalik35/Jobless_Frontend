@@ -19,7 +19,7 @@ const UserCard = (props) => {
                 if (res.data.status) {
                     dispatch(deleteUserAction({ user_id }));
                     toast.success("You have successfully deleted the user.", {
-                        position: "top-right",
+                        position: "top-left",
                         autoClose: 3000,
                         closeOnClick: true,
                         pauseOnHover: false

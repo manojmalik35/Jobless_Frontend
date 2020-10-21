@@ -18,7 +18,7 @@ const AdminJobcard = (props) => {
                 if (res.data.status) {
                     dispatch(deleteJobAction({ job_id }));
                     toast.success("You have successfully deleted the job.", {
-                        position: "top-right",
+                        position: "top-left",
                         autoClose: 3000,
                         closeOnClick: true,
                         pauseOnHover: false
