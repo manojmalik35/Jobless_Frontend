@@ -4,6 +4,7 @@ import { Card } from 'react-bootstrap';
 import CandidateDataManager from './dataManager';
 import { applyJobAction } from '../../actions/applicationActions';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const JobCard = (props) => {
 
@@ -16,6 +17,12 @@ const JobCard = (props) => {
                 console.log(res.data);
                 if (res.data.status) {
                     dispatch(applyJobAction({ job_id }));
+                    toast.success("You have successfully applied for the job.", {
+                        position: "top-center",
+                        autoClose: 3000,
+                        closeOnClick: true,
+                        pauseOnHover: false
+                    });
                 }
             })
             .catch(err => {

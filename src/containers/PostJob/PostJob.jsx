@@ -4,6 +4,7 @@ import PostJobDataManager from './dataManager';
 import { postAction } from '../../actions/jobActions';
 import { connect } from 'react-redux';
 import validator from '../../common/validation';
+import { toast } from 'react-toastify';
 
 class PostJob extends Component {
     constructor(props) {
@@ -33,6 +34,12 @@ class PostJob extends Component {
         }).then(res => {
             if (res.data.status) {
                 this.props.postAction(res.data.data);
+                toast.success("You have successfully logged out.", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    closeOnClick: true,
+                    pauseOnHover: false
+                });
                 this.props.handleMenuChange("Jobs");
             }
         }).catch(err => {
