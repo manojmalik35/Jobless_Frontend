@@ -13,7 +13,6 @@ class Jobs extends Component {
         super(props);
         this.dataManager = new GetJobsDataManager();
         this.state = {
-            jobs: [],
             totalCount: 0,
             page: 1
         }
@@ -28,7 +27,6 @@ class Jobs extends Component {
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                jobs: this.props.jobs.jobs,
                                 totalCount: res.data.metadata.resultset.count
                             })
                         }
@@ -36,13 +34,11 @@ class Jobs extends Component {
                     .catch(err => {
                     })
             } else {
-
                 this.dataManager.getAppliedJobs({ page: this.state.page })
                     .then(res => {
                         if (res.data.status) {
                             this.props.getAppliedJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                jobs: this.props.jobs.jobs,
                                 totalCount: res.data.metadata.resultset.count
                             })
                         }
@@ -51,13 +47,12 @@ class Jobs extends Component {
                     })
             }
         } else {
-            if (prevProps.jobs.count != this.props.jobs.count) {
+            if (prevProps.jobs.count != this.props.jobs.count && this.props.type == prevProps.type && this.props.jobs.type == prevProps.jobs.type) {
                 this.dataManager.getJobs({ page: this.state.page })
                     .then(res => {
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                jobs: this.props.jobs.jobs,
                                 totalCount: res.data.metadata.resultset.count
                             })
                         }
@@ -75,7 +70,6 @@ class Jobs extends Component {
                 if (res.data.status) {
                     this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                     this.setState({
-                        jobs: this.props.jobs.jobs,
                         totalCount: res.data.metadata.resultset.count
                     })
                 }
@@ -103,23 +97,24 @@ class Jobs extends Component {
 
     getCards = (rowNo) => {
         let { role, type } = this.props;
+        let jobs = this.props.jobs.jobs;
         let si = rowNo * 4;
         let ei = si + 4;
         let cards = [];
         if (role == 1) {
-            while (si < this.state.jobs.length && si < ei) {
-                cards.push(<RecruiterJobcard key={this.state.jobs[si].uuid} job={this.state.jobs[si]}></RecruiterJobcard>);
+            while (si < jobs.length && si < ei) {
+                cards.push(<RecruiterJobcard key={jobs[si].uuid} job={jobs[si]}></RecruiterJobcard>);
                 si++;
             }
         } else {
             if (type == "Available") {
-                while (si < this.state.jobs.length && si < ei) {
-                    cards.push(<CandidateJobcard key={this.state.jobs[si].uuid} job={this.state.jobs[si]} applied={false}></CandidateJobcard>);
+                while (si < jobs.length && si < ei) {
+                    cards.push(<CandidateJobcard key={jobs[si].uuid} job={jobs[si]} applied={false}></CandidateJobcard>);
                     si++;
                 }
             } else {
-                while (si < this.state.jobs.length && si < ei) {
-                    cards.push(<CandidateJobcard key={this.state.jobs[si].uuid} job={this.state.jobs[si]} applied={true}></CandidateJobcard>);
+                while (si < jobs.length && si < ei) {
+                    cards.push(<CandidateJobcard key={jobs[si].uuid} job={jobs[si]} applied={true}></CandidateJobcard>);
                     si++;
                 }
 
@@ -130,7 +125,8 @@ class Jobs extends Component {
 
     getRows = () => {
         let { role, type, handleMenuChange } = this.props;
-        let totalJobs = this.state.jobs.length;
+        let jobs = this.props.jobs.jobs;
+        let totalJobs = jobs.length;
         if (totalJobs == 0) {
             return (
                 <NoJobs role={role} type={type} handleMenuChange={handleMenuChange}></NoJobs>

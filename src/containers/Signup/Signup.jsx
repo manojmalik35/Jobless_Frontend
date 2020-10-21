@@ -39,20 +39,18 @@ class Signup extends Component {
             name: this.state.name,
             role: this.state.role,
             phone: this.state.phone
-        })
-            .then(res => {
-                if (res.data.status) {
-                    this.props.signupAction(res.data.data);
-                    if (res.data.data.role == 1) {
-                        this.props.history.push("/recruiter-profile");
-                    } else {
-                        this.props.history.push("/candidate-profile");
-                    }
+        }).then(res => {
+            if (res.data.status) {
+                this.props.signupAction(res.data.data);
+                if (res.data.data.role == 1) {
+                    this.props.history.push("/recruiter-profile");
+                } else {
+                    this.props.history.push("/candidate-profile");
                 }
-            })
-            .catch(err => {
-                validator(err);
-            })
+            }
+        }).catch(err => {
+            validator(err);
+        })
     };
 
     checkActiveButton = (role) => {

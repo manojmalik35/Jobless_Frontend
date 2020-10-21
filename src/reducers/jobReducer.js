@@ -2,7 +2,8 @@ import {POST_SUCC, GET_JOBS, GET_APPLIED_JOBS, APPLY_JOB, CLEAR_JOBS} from '../a
 
 const initialState = {
     count : 0,
-    jobs : []
+    jobs : [],
+    type : "Jobs"
 }
 
 
@@ -23,13 +24,15 @@ const initialState = {
                 return {
                     ...state,
                     jobs : payload.jobs,
-                    count : payload.count
+                    count : payload.count,
+                    type : "Jobs"
                 };
             case GET_APPLIED_JOBS :
                 return{
-                    ...state,
+                    // ...state,
                     jobs : payload.jobs,
-                    count : payload.count
+                    count : payload.count,
+                    type : "Applied"
                 };
             case APPLY_JOB :
                 arr = state.jobs;
