@@ -18,7 +18,7 @@ const JobCard = (props) => {
                 if (res.data.status) {
                     dispatch(applyJobAction({ job_id }));
                     toast.success("You have successfully applied for the job.", {
-                        position: "top-center",
+                        position: "top-right",
                         autoClose: 3000,
                         closeOnClick: true,
                         pauseOnHover: false

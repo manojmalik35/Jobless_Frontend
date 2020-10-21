@@ -27,7 +27,8 @@ class Jobs extends Component {
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                totalCount: res.data.metadata.resultset.count
+                                totalCount: res.data.metadata.resultset.count,
+                                page : this.props.type == prevProps.type ? this.state.page : 1
                             })
                         }
                     })
@@ -39,7 +40,8 @@ class Jobs extends Component {
                         if (res.data.status) {
                             this.props.getAppliedJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
                             this.setState({
-                                totalCount: res.data.metadata.resultset.count
+                                totalCount: res.data.metadata.resultset.count,
+                                page : this.props.type == prevProps.type ? this.state.page : 1
                             })
                         }
                     })
