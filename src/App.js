@@ -11,6 +11,7 @@ import AdminProfile from './containers/AdminProfile/AdminProfile';
 import Home from "./containers/Home/Home";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import PageNotFound from './containers/PageNotFound/PageNotFound';
 
 const App = () => {
     return (
@@ -19,13 +20,14 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/login" exact component={Login} />
-                    <Route path="/login/admin" component={AdminLogin} />
-                    <Route path="/signup" component={Signup} />
+                    <Route path="/login/admin" exact component={AdminLogin} />
+                    <Route path="/signup" exact component={Signup} />
                     <Route path="/forgot-password" component={ForgotPassword} />
                     <Route path="/reset-password" component={ResetPassword} />
                     <Route path="/recruiter-profile" component={RecruiterProfile} />
                     <Route path="/candidate-profile" component={CandidateProfile} />
                     <Route path="/admin-profile" component={AdminProfile} />
+                    <Route path="/" component={PageNotFound} />
                 </Switch>
             </BrowserRouter>
             <ToastContainer/>
