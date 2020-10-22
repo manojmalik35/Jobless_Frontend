@@ -14,7 +14,8 @@ class Login extends Component {
         this.dataManager = new LoginDataManager();
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            submitted : false
         }
     }
 
@@ -30,6 +31,7 @@ class Login extends Component {
 
 
     handleSubmit = (e) => {
+
 
         this.dataManager.handleLogin({ email: this.state.email, password: this.state.password })
             .then(res => {
@@ -47,6 +49,10 @@ class Login extends Component {
                 validator(err);
             })
 
+    }
+
+    componentDidMount(){
+        document.title = "Jobless | Login";
     }
 
     render() {

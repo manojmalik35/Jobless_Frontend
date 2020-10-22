@@ -16,6 +16,10 @@ class ForgotPassword extends Component {
         }
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Forgot Password";
+    }
+
     handleChange = (e) => {
         this.setState({
             email: e.target.value

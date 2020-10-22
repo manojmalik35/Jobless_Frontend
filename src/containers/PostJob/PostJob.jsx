@@ -18,6 +18,10 @@ class PostJob extends Component {
         }
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Post A Job";
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -34,7 +38,7 @@ class PostJob extends Component {
         }).then(res => {
             if (res.data.status) {
                 this.props.postAction(res.data.data);
-                toast.success("You have successfully logged out.", {
+                toast.success("Job is posted successfully.", {
                     position: "top-center",
                     autoClose: 3000,
                     closeOnClick: true,

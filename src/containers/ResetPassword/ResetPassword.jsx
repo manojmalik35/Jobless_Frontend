@@ -18,6 +18,10 @@ class ResetPassword extends Component {
         }
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Reset Password";
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value

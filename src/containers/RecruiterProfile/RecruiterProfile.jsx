@@ -12,6 +12,10 @@ class RecruiterProfile extends Component {
         }
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Dashboard";
+    }
+
     handleMenuChange = (newMenu) => {
         
         this.setState({

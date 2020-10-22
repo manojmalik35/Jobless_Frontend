@@ -21,6 +21,10 @@ class Signup extends Component {
         };
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Signup";
+    }
+
     handleChange = (e) => {
         let target = e.target;
         let value = target.value;
@@ -32,6 +36,7 @@ class Signup extends Component {
     };
 
     handleSubmit = (e) => {
+        console.log("asjfasjflasf");
         this.dataManager.handleSignup({
             email: this.state.email,
             password: this.state.password,

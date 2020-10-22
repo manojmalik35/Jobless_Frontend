@@ -3,6 +3,7 @@ import { Button, Popover, OverlayTrigger } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../../actions/authActions';
 import { clearJobsAction } from '../../actions/jobActions';
+import { clearUsersAction } from '../../actions/userActions';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -52,6 +53,7 @@ const Header = (props) => {
     const handleLogout = () => {
         dispatch(logoutAction());
         dispatch(clearJobsAction());
+        dispatch(clearUsersAction());
         history.push("/");
         toast.success("You have successfully logged out.", {
             position: "top-center",

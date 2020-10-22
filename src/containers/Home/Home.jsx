@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import {Card, CardDeck} from 'react-bootstrap';
 import isLoggedIn from "../../hoc/isLoggedIn";
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Home = () => {
 
@@ -11,6 +12,10 @@ const Home = () => {
     const getStarted = () =>{
         history.push("/signup");
     }
+
+    useEffect(()=>{
+        document.title = "Jobless | Homepage";
+    })
 
     return (
         <div className="base home">

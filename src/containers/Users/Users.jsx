@@ -33,7 +33,7 @@ class Users extends Component {
     }
 
     componentDidMount() {
-
+        document.title = this.props.role == 1 ? "Jobless | Recruiters" : "Jobless | Candidates";
         this.dataManager.getAllUsers({ page: this.state.page, role: this.props.role })
             .then(res => {
                 if (res.data.status) {

@@ -379,3 +379,17 @@ p {
   text-align: center;
   padding-top: 10rem;
 }
+.page-not-found img{
+  height: 100vh;
+  width: 100vw;
+}
+.pnf{
+  height: 3rem;
+    width: 11rem;
+    position: absolute;
+    top: 36rem;
+    left: 41rem;
+    padding: 0.6rem;
+    font-size: large;
+    background-color: #13dc13;
+}

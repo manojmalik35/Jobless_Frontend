@@ -12,6 +12,10 @@ class AdminProfile extends Component {
         }
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Admin Dashboard";
+    }
+
     handleMenuChange = (newMenu) => {
         
         this.setState({

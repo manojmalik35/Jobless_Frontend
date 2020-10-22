@@ -22,11 +22,11 @@ const App = () => {
                     <Route path="/login" exact component={Login} />
                     <Route path="/login/admin" exact component={AdminLogin} />
                     <Route path="/signup" exact component={Signup} />
-                    <Route path="/forgot-password" component={ForgotPassword} />
+                    <Route path="/forgot-password" exact component={ForgotPassword} />
                     <Route path="/reset-password" component={ResetPassword} />
-                    <Route path="/recruiter-profile" component={RecruiterProfile} />
-                    <Route path="/candidate-profile" component={CandidateProfile} />
-                    <Route path="/admin-profile" component={AdminProfile} />
+                    <Route path="/recruiter-profile" exact component={RecruiterProfile} />
+                    <Route path="/candidate-profile" exact component={CandidateProfile} />
+                    <Route path="/admin-profile" exact component={AdminProfile} />
                     <Route path="/" component={PageNotFound} />
                 </Switch>
             </BrowserRouter>

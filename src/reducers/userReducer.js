@@ -3,7 +3,7 @@ import { GET_RECRUITERS, GET_CANDIDATES, CLEAR_USERS, DELETE_USER} from '../acti
 const initialState = {
     count: 0,
     users: [],
-    type: "Recruiters"
+    type: ""
 }
 
 
@@ -30,7 +30,8 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: [],
-                count: 0
+                count: 0,
+                type : ""
             };
         case DELETE_USER:
             arr = state.users;
