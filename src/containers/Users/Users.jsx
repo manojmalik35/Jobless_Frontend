@@ -17,6 +17,7 @@ class Users extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        document.title = this.props.role == 1 ? "Jobless | Recruiters" : "Jobless | Candidates";
         if (prevState.page != this.state.page || prevProps.users.count != this.props.users.count || prevProps.role != this.props.role) {
             this.dataManager.getAllUsers({ page: this.state.page, role: this.props.role })
                 .then(res => {

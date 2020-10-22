@@ -27,6 +27,7 @@ const App = () => {
                     <Route path="/recruiter-profile" exact component={RecruiterProfile} />
                     <Route path="/candidate-profile" exact component={CandidateProfile} />
                     <Route path="/admin-profile" exact component={AdminProfile} />
+                    <Route path="/admin-profile/:page" exact component={AdminProfile} />
                     <Route path="/" component={PageNotFound} />
                 </Switch>
             </BrowserRouter>

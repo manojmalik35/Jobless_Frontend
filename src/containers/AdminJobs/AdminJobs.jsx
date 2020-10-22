@@ -11,15 +11,23 @@ class Jobs extends Component {
         super(props);
         this.dataManager = new AdminDataManager();
         this.state = {
-            page: 1
         }
 
     }
 
+    getCurrentPage = () =>{
+        const page = this.props.match.params;
+        if(page && page.page){
+            return parseInt(page.page);
+        }
+
+        return 1;
+    }
+
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.page !== this.state.page || prevProps.jobs.count !== this.props.jobs.count) {
-            this.dataManager.getAllJobs({ page: this.state.page })
+        if (prevState.page !== this.getCurrentPage() || prevProps.jobs.count !== this.props.jobs.count) {
+            this.dataManager.getAllJobs({ page: this.getCurrentPage() })
                 .then(res => {
                     if (res.data.status) {
                         this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
@@ -31,8 +39,7 @@ class Jobs extends Component {
     }
 
     componentDidMount() {
-
-        this.dataManager.getAllJobs({ page: this.state.page })
+        this.dataManager.getAllJobs({ page: this.getCurrentPage() })
             .then(res => {
                 if (res.data.status) {
                     this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
@@ -44,9 +51,7 @@ class Jobs extends Component {
     }
 
     handlePageChange = (newPage) => {
-        this.setState({
-            page: newPage
-        });
+        this.props.history.push(`/admin-profile/${newPage}`);
     }
 
     getCards = (rowNo) => {
@@ -96,7 +101,7 @@ class Jobs extends Component {
                 <h1>All Jobs</h1>
                 {this.getRows()}
                 {this.props.jobs.count === 0 ? '' :
-                    <Paginate totalJobs={this.props.jobs.count} active={this.state.page} handlePageChange={this.handlePageChange}></Paginate>
+                    <Paginate totalJobs={this.props.jobs.count} active={this.getCurrentPage()} handlePageChange={this.handlePageChange}></Paginate>
                 }
             </div>
         );

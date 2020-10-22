@@ -22,6 +22,7 @@ class Jobs extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.props.type != prevProps.type || this.state.page != prevState.page) {
             if (this.props.type != "Applied") {
+                document.title = "Jobless | Dashboard";
                 this.dataManager.getJobs({ page: this.state.page })
                     .then(res => {
                         if (res.data.status) {
@@ -35,6 +36,7 @@ class Jobs extends Component {
                     .catch(err => {
                     })
             } else {
+                document.title = "Jobless | Applied Jobs"
                 this.dataManager.getAppliedJobs({ page: this.state.page })
                     .then(res => {
                         if (res.data.status) {

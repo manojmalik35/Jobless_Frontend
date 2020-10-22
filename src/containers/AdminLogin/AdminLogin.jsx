@@ -29,6 +29,9 @@ class AdminLogin extends Component {
         })
     }
 
+    componentDidMount(){
+        document.title = "Jobless | Admin Login";
+    }
 
 
     handleSubmit = (e) => {

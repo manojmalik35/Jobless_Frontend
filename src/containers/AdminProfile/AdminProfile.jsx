@@ -41,7 +41,7 @@ class AdminProfile extends Component {
 
     getContent = () => {
         if (this.state.menu === "Jobs")
-            return (<AdminJobs handleMenuChange={this.handleMenuChange} />)
+            return (<AdminJobs {...this.props} handleMenuChange={this.handleMenuChange} />)
         else if (this.state.menu === "Recruiters")
             return (<Users role={1} handleMenuChange={this.handleMenuChange}/>)
         else
