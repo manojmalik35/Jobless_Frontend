@@ -90,11 +90,11 @@ class Jobs extends Component {
     getHeading = () => {
         let { role, type } = this.props;
         if (role == 1) {
-            return (<h3>Jobs posted by you</h3>)
+            return (<h1>Jobs posted by you</h1>)
         }
         if (type == "Applied")
-            return (<h3>Jobs applied by you</h3>)
-        return (<h3>Jobs for you</h3>)
+            return (<h1>Jobs applied by you</h1>)
+        return (<h1>Jobs for you</h1>)
     }
 
     getCards = (rowNo) => {

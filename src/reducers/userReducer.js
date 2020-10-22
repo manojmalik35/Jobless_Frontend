@@ -36,7 +36,7 @@ const userReducer = (state = initialState, action) => {
         case DELETE_USER:
             arr = state.users;
             arr = arr.filter(user => {
-                return user.uuid != payload.user_id;
+                return user.uuid !== payload.user_id;
             })
             return {
                 ...state,

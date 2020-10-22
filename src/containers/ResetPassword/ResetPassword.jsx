@@ -4,7 +4,6 @@ import Header from "../../components/Header/Header"
 import ResetPasswordManager from './dataManager';
 import queryString from 'query-string';
 import { Alert } from 'react-bootstrap';
-import isLoggedIn from '../../hoc/isLoggedIn';
 import validator from '../../common/validation';
 
 class ResetPassword extends Component {
@@ -55,7 +54,7 @@ class ResetPassword extends Component {
             <div className="base">
                 <Header loginButton={true}></Header>
                 <div className="base-form reset">
-                    <h3>Reset your password?</h3>
+                    <h1>Reset your password?</h1>
                     <p>Enter your new password below.</p>
                     <form>
                         <fieldset>
@@ -88,4 +87,4 @@ class ResetPassword extends Component {
     }
 }
 
-export default isLoggedIn(ResetPassword);
+export default ResetPassword;

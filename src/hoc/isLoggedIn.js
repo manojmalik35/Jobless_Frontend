@@ -15,7 +15,7 @@ export default (ChildComponent) => {
                     return <Redirect to='/admin-profile' />;
             }
 
-            return <ChildComponent />;
+            return <ChildComponent/>;
         }
     }
 

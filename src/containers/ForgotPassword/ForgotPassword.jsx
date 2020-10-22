@@ -44,7 +44,7 @@ class ForgotPassword extends Component {
             <div className="base">
                 <Header loginButton={true}></Header>
                 <div className="base-form forgot">
-                    <h3>Forgot your password?</h3>
+                    <h1>Forgot your password?</h1>
                     <p>Enter the email associated with your account and we'll send you instructions to reset your password</p>
                     <form>
                         <fieldset>

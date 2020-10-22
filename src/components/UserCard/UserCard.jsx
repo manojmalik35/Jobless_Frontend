@@ -14,21 +14,23 @@ const UserCard = (props) => {
     const dispatch = useDispatch();
     const dataManager = new UserDataManager();
     const handleDelete = (user_id) => {
-        dataManager.deleteUser({ user_id })
-            .then(res => {
-                if (res.data.status) {
-                    dispatch(deleteUserAction({ user_id }));
-                    toast.success("You have successfully deleted the user.", {
-                        position: "top-left",
-                        autoClose: 3000,
-                        closeOnClick: true,
-                        pauseOnHover: false
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        if (window.confirm("Are you sure?")) {
+
+            dataManager.deleteUser({ user_id })
+                .then(res => {
+                    if (res.data.status) {
+                        dispatch(deleteUserAction({ user_id }));
+                        toast.success("You have successfully deleted the user.", {
+                            position: "top-left",
+                            autoClose: 3000,
+                            closeOnClick: true,
+                            pauseOnHover: false
+                        });
+                    }
+                })
+                .catch(err => {
+                })
+        }
     }
     return (
         <div className="col-sm-3">
@@ -38,8 +40,8 @@ const UserCard = (props) => {
                     <Card.Text>{props.user.email}</Card.Text>
                     <Card.Text>{props.user.phone}</Card.Text>
                     <div className="company-btn-container">
-                        <button className="job-btn" id={props.user.uuid} onClick={()=>handleDelete(props.user.uuid)}>Delete</button>
-                        {props.user.role == 1 ?
+                        <button className="job-btn" id={props.user.uuid} onClick={() => handleDelete(props.user.uuid)}>Delete</button>
+                        {props.user.role === 1 ?
                             <button className="job-btn application" id={props.user.uuid} onClick={handleShow}>View Posted Jobs</button>
                             :
                             <button className="job-btn application" id={props.user.uuid} onClick={handleShow}>View Applied Jobs</button>

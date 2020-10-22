@@ -3,7 +3,7 @@ import PostJobImage from "../../assets/post-job.jpg";
 
 function getButton(props) {
     let { role, type } = props;
-    if (role == 0) {
+    if (role === 0) {
         return (
             <React.Fragment>
                 <p>All jobs will show here</p>
@@ -13,7 +13,7 @@ function getButton(props) {
                 </div>
             </React.Fragment>
         )
-    } else if (role == 1) {
+    } else if (role === 1) {
         return (
             <React.Fragment>
                 <p>Your posted jobs will show here</p>
@@ -22,7 +22,7 @@ function getButton(props) {
                 </div>
             </React.Fragment>
         )
-    } else if (type == "Applied") {
+    } else if (type === "Applied") {
         return (
             <React.Fragment>
                 <p>Your applied jobs will show here</p>

@@ -5,10 +5,10 @@ const Paginate = (props) => {
     let { totalJobs, active, handlePageChange } = props;
     let noOfPages = 0;
     if (totalJobs <= 12) noOfPages = 1;
-    else noOfPages = totalJobs % 12 == 0 ? (totalJobs / 12) : Math.floor(totalJobs / 12) + 1;
+    else noOfPages = totalJobs % 12 === 0 ? (totalJobs / 12) : Math.floor(totalJobs / 12) + 1;
     let pages = [];
     pages.push(
-        <Pagination.Prev disabled={active == 1} onClick={()=>handlePageChange(active - 1)}/>
+        <Pagination.Prev disabled={active === 1} onClick={()=>handlePageChange(active - 1)}/>
     );
     for (let i = 1; i <= noOfPages; i++) {
         pages.push(

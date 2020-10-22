@@ -56,6 +56,13 @@ nav p {
   border-radius: 5%;
   box-shadow: 0px 2px 5px 2px lightgray;
 }
+.login-admin{
+  height: 30rem;
+}
+.captcha{
+  margin-left: 7rem;
+  margin-top: 2rem;
+}
 fieldset {
   border: none;
   margin: 0;
@@ -311,6 +318,9 @@ p {
   color: white;
   height: 100%;
   font-size: 3rem;
+}
+.showcase-heading h1{
+  font-size: 3.5rem;
 }
 .home-btn {
   width: 50%;

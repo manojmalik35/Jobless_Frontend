@@ -57,9 +57,9 @@ class Users extends Component {
     getHeading = () => {
         let { role } = this.props;
         if (role == 1) {
-            return (<h3>All recruiters</h3>)
+            return (<h1>All recruiters</h1>)
         }
-        return (<h3>All Candidates</h3>)
+        return (<h1>All Candidates</h1>)
     }
 
     getCards = (rowNo) => {

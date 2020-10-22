@@ -3,7 +3,7 @@ import PostJobImage from "../../assets/post-job.jpg";
 
 function getButton(props) {
     let { role} = props;
-    if (role == 1) {
+    if (role === 1) {
         return (
             <React.Fragment>
                 <p>Recruiters will show here</p>

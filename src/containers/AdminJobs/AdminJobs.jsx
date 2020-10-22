@@ -18,7 +18,7 @@ class Jobs extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.page != this.state.page || prevProps.jobs.count != this.props.jobs.count) {
+        if (prevState.page !== this.state.page || prevProps.jobs.count !== this.props.jobs.count) {
             this.dataManager.getAllJobs({ page: this.state.page })
                 .then(res => {
                     if (res.data.status) {
@@ -67,13 +67,13 @@ class Jobs extends Component {
         let { handleMenuChange } = this.props;
         let jobs = this.props.jobs.jobs;
         let totalJobs = jobs.length;
-        if (totalJobs == 0) {
+        if (totalJobs === 0) {
             return (
                 <NoJobs role={0} handleMenuChange={handleMenuChange}></NoJobs>
             )
         }
 
-        let noOfRows = (totalJobs % 4) == 0 ? totalJobs / 4 : (totalJobs / 4) + 1;
+        let noOfRows = (totalJobs % 4) === 0 ? totalJobs / 4 : (totalJobs / 4) + 1;
         let rows = []
         for (let i = 0; i < noOfRows; i++) {
             rows.push(
@@ -93,9 +93,9 @@ class Jobs extends Component {
     render() {
         return (
             <div className="jobs-container">
-                <h3>All Jobs</h3>
+                <h1>All Jobs</h1>
                 {this.getRows()}
-                {this.props.jobs.count == 0 ? '' :
+                {this.props.jobs.count === 0 ? '' :
                     <Paginate totalJobs={this.props.jobs.count} active={this.state.page} handlePageChange={this.handlePageChange}></Paginate>
                 }
             </div>

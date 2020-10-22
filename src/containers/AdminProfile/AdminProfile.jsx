@@ -25,9 +25,9 @@ class AdminProfile extends Component {
 
     getBreadcrumb = () => {
         let str = "";
-        if (this.state.menu == "Recruiters")
+        if (this.state.menu === "Recruiters")
             str += " > Recruiters";
-        else if (this.state.menu == "Candidates")
+        else if (this.state.menu === "Candidates")
             str += " > Candidates"
         return (
             <div className="base-path">
@@ -40,9 +40,9 @@ class AdminProfile extends Component {
     }
 
     getContent = () => {
-        if (this.state.menu == "Jobs")
+        if (this.state.menu === "Jobs")
             return (<AdminJobs handleMenuChange={this.handleMenuChange} />)
-        else if (this.state.menu == "Recruiters")
+        else if (this.state.menu === "Recruiters")
             return (<Users role={1} handleMenuChange={this.handleMenuChange}/>)
         else
             return (<Users role={2} handleMenuChange={this.handleMenuChange}/>)

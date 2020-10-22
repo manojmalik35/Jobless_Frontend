@@ -23,10 +23,10 @@ const Home = () => {
             <div className="home-content">
                 <div className="showcase">
                     <div className="showcase-heading">
-                        <div>
+                        <h1>
                             Welcome to<br />
                         Job<span style={{ color: "#43AFFF" }}>Less</span>
-                        </div>
+                        </h1>
                         <button className="btn home-btn" onClick={getStarted}>Get Started</button>
                     </div>
                     <div className="img-container">

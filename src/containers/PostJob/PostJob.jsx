@@ -54,7 +54,7 @@ class PostJob extends Component {
     render() {
         return (
             <div className="base-form post">
-                <h3>Post a Job</h3>
+                <h1>Post a Job</h1>
                 <form>
                     <fieldset>
                         <label>Job title*</label>

@@ -36,7 +36,6 @@ class Signup extends Component {
     };
 
     handleSubmit = (e) => {
-        console.log("asjfasjflasf");
         this.dataManager.handleSignup({
             email: this.state.email,
             password: this.state.password,
@@ -47,7 +46,7 @@ class Signup extends Component {
         }).then(res => {
             if (res.data.status) {
                 this.props.signupAction(res.data.data);
-                if (res.data.data.role == 1) {
+                if (res.data.data.role === 1) {
                     this.props.history.push("/recruiter-profile");
                 } else {
                     this.props.history.push("/candidate-profile");
@@ -68,7 +67,7 @@ class Signup extends Component {
             <div className="base">
                 <Header></Header>
                 <div className="base-form signup">
-                    <h3>Signup</h3>
+                    <h1>Signup</h1>
                     <form>
                         <fieldset>
                             <label>I'm a*</label>

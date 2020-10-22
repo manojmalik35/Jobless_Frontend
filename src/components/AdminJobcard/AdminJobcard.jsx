@@ -11,23 +11,22 @@ const AdminJobcard = (props) => {
     let dataManager = new AdminDataManager();
     const dispatch = useDispatch();
     const handleDelete = (job_id) => {
-        // console.log(job_id);
-        dataManager.handleDelete({ job_id })
-            .then(res => {
-                console.log(res.data);
-                if (res.data.status) {
-                    dispatch(deleteJobAction({ job_id }));
-                    toast.success("You have successfully deleted the job.", {
-                        position: "top-left",
-                        autoClose: 3000,
-                        closeOnClick: true,
-                        pauseOnHover: false
-                    });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        if (window.confirm("Are you sure?")) {
+            dataManager.handleDelete({ job_id })
+                .then(res => {
+                    if (res.data.status) {
+                        dispatch(deleteJobAction({ job_id }));
+                        toast.success("You have successfully deleted the job.", {
+                            position: "top-left",
+                            autoClose: 3000,
+                            closeOnClick: true,
+                            pauseOnHover: false
+                        });
+                    }
+                })
+                .catch(err => {
+                })
+        }
     }
 
     return (

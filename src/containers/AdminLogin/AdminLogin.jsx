@@ -6,6 +6,7 @@ import { loginAction } from "../../actions/authActions";
 import { connect } from 'react-redux';
 import isLoggedIn from "../../hoc/isLoggedIn";
 import validator from '../../common/validation';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 class AdminLogin extends Component {
 
@@ -14,7 +15,8 @@ class AdminLogin extends Component {
         this.dataManager = new LoginDataManager();
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            recaptchaResponse: ""
         }
     }
 
@@ -31,7 +33,7 @@ class AdminLogin extends Component {
 
     handleSubmit = (e) => {
 
-        this.dataManager.handleLogin({ email: this.state.email, password: this.state.password })
+        this.dataManager.handleLogin({ email: this.state.email, password: this.state.password, recaptchaResponse : this.state.recaptchaResponse })
             .then(res => {
                 if (res.data.status) {
                     this.props.loginAction(res.data.data);
@@ -44,11 +46,17 @@ class AdminLogin extends Component {
 
     }
 
+    handleCaptchaResponseChange = (response) => {
+        this.setState({
+            recaptchaResponse: response
+        })
+    }
+
     render() {
         return (
             <div className="base">
                 <Header></Header>
-                <div className="base-form login">
+                <div className="base-form login login-admin">
                     <h3>Login as Admin</h3>
                     <form>
                         <fieldset>
@@ -62,6 +70,8 @@ class AdminLogin extends Component {
                             </div>
                             <Input type="password" name="password" value={this.state.password} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
+                        <ReCAPTCHA className="captcha" ref={(el) => { this.recaptcha = el }} sitekey="6LcF4dkZAAAAAEF33tj9EeO0SF8O11B2lLCPqGWO"
+                            onChange={this.handleCaptchaResponseChange} />
                         <div className="btn-container">
                             <button className="btn" type="button" onClick={this.handleSubmit}>Login</button>
                         </div>

@@ -32,7 +32,6 @@ class Login extends Component {
 
     handleSubmit = (e) => {
 
-
         this.dataManager.handleLogin({ email: this.state.email, password: this.state.password })
             .then(res => {
                 if (res.data.status) {
@@ -60,7 +59,7 @@ class Login extends Component {
             <div className="base">
                 <Header></Header>
                 <div className="base-form login">
-                    <h3>Login</h3>
+                    <h1>Login</h1>
                     <form>
                         <fieldset>
                             <label>Email address*</label>

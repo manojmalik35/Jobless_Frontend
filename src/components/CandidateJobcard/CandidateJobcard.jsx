@@ -11,10 +11,8 @@ const JobCard = (props) => {
     let dataManager = new CandidateDataManager();
     const dispatch = useDispatch();
     const handleApply = (job_id) => {
-        // console.log(job_id);
         dataManager.handleApply({ job_id })
             .then(res => {
-                console.log(res.data);
                 if (res.data.status) {
                     dispatch(applyJobAction({ job_id }));
                     toast.success("You have successfully applied for the job.", {
@@ -26,7 +24,6 @@ const JobCard = (props) => {
                 }
             })
             .catch(err => {
-                console.log(err);
             })
     }
 
