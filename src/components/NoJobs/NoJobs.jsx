@@ -7,7 +7,7 @@ function getButton(props) {
         return (
             <React.Fragment>
                 <p>All jobs will show here</p>
-                <div className="btn-container">
+                <div className="btn-container btn-container-admin">
                     <button className="btn" onClick={() => props.handleMenuChange("Recruiters")}>View Recruiters</button>
                     <button className="btn" onClick={() => props.handleMenuChange("Candidates")}>View Candidates</button>
                 </div>

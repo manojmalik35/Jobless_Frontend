@@ -30,7 +30,6 @@ const authReducer = (state = initialState, action) => {
                 user : {}
             };
         case 'persist/REHYDRATE':
-            // Check if Payload Exists
             if (action.payload) {
                 axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${action.payload.auth.user.authToken}`;
             }
