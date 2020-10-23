@@ -70,7 +70,7 @@ class Signup extends Component {
                     <h1>Signup</h1>
                     <form>
                         <fieldset>
-                            <label>I'm a*</label>
+                            <label>I'm a<span className="star">*</span></label>
                             <div className="role-container">
                                 <button className={this.checkActiveButton(1)} type="button" value={1} name="role" onClick={this.handleChange}>
                                     Recruiter
@@ -81,25 +81,25 @@ class Signup extends Component {
                             </div>
                         </fieldset>
                         <fieldset>
-                            <label>Full Name*</label>
+                            <label>Full Name<span className="star">*</span></label>
                             <Input type="text" name="name" value={this.state.name} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <fieldset>
-                            <label>Email address*</label>
+                            <label>Email address<span className="star">*</span></label>
                             <Input type="email" name="email" value={this.state.email} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <div className="passwords">
                             <fieldset>
-                                <label>Create Password*</label>
+                                <label>Create Password<span className="star">*</span></label>
                                 <Input type="password" name="password" value={this.state.password} handleChange={this.handleChange} required={true}></Input>
                             </fieldset>
                             <fieldset>
-                                <label>Confirm Password*</label>
+                                <label>Confirm Password<span className="star">*</span></label>
                                 <Input type="password" name="confirmPassword" value={this.state.confirmPassword} handleChange={this.handleChange} required={true}></Input>
                             </fieldset>
                         </div>
                         <fieldset>
-                            <label>Phone no.</label>
+                            <label>Phone number</label>
                             <Input type="tel" name="phone" value={this.state.phone} maxlength="10" handleChange={this.handleChange}></Input>
                         </fieldset>
                         <div className="btn-container">

@@ -37,9 +37,9 @@ class Login extends Component {
                 if (res.data.status) {
                     this.props.loginAction(res.data.data);
                     if (res.data.data.role == 1) {
-                        this.props.history.push("/recruiter-profile");
+                        this.props.history.push("/recruiter-profile/1");
                     } else {
-                        this.props.history.push("/candidate-profile");
+                        this.props.history.push("/candidate-profile/1");
                     }
                 }
 
@@ -62,12 +62,12 @@ class Login extends Component {
                     <h1>Login</h1>
                     <form>
                         <fieldset>
-                            <label>Email address*</label>
+                            <label>Email address<span className="star">*</span></label>
                             <Input type="email" name="email" value={this.state.email} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <fieldset>
                             <div className="password-label">
-                                <label>Password</label>
+                                <label>Password<span className="star">*</span></label>
                                 <a href="/forgot-password">Forgot your password?</a>
                             </div>
                             <Input type="password" name="password" value={this.state.password} handleChange={this.handleChange} required={true}></Input>

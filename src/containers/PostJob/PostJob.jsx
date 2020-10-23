@@ -57,15 +57,15 @@ class PostJob extends Component {
                 <h1>Post a Job</h1>
                 <form>
                     <fieldset>
-                        <label>Job title*</label>
+                        <label>Job title<span className="star">*</span></label>
                         <Input type="text" name="title" value={this.state.title} handleChange={this.handleChange} required={true}></Input>
                     </fieldset>
                     <fieldset>
-                        <label>Description*</label>
+                        <label>Description<span className="star">*</span></label>
                         <textarea name="description" placeholder="Enter job description" value={this.state.description} onChange={this.handleChange} required={true}></textarea>
                     </fieldset>
                     <fieldset>
-                        <label>Company*</label>
+                        <label>Company<span className="star">*</span></label>
                         <Input type="text" name="company" value={this.state.company} handleChange={this.handleChange} required={true}></Input>
                     </fieldset>
                     <fieldset>

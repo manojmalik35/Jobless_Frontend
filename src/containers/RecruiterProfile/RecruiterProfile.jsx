@@ -21,6 +21,7 @@ class RecruiterProfile extends Component {
         this.setState({
             menu: newMenu
         });
+        this.props.history.push("/recruiter-profile/1");    
     }
 
     getBreadcrumb = () => {
@@ -41,7 +42,7 @@ class RecruiterProfile extends Component {
 
     getJobs = () => {
         if (this.state.menu == "Jobs")
-            return (<Jobs role={1} handleMenuChange={this.handleMenuChange}></Jobs>)
+            return (<Jobs {...this.props} role={1} handleMenuChange={this.handleMenuChange}></Jobs>)
         else if (this.state.menu == "Post")
             return (<PostJob handleMenuChange={this.handleMenuChange}></PostJob>)
     }

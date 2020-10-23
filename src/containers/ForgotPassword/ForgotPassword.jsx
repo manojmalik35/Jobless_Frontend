@@ -48,7 +48,7 @@ class ForgotPassword extends Component {
                     <p>Enter the email associated with your account and we'll send you instructions to reset your password</p>
                     <form>
                         <fieldset>
-                            <label>Email address</label>
+                            <label>Email address<span className="star">*</span></label>
                             <Input type="email" name="email" value={this.state.email} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <div className="error-container hidden">

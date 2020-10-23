@@ -11,15 +11,21 @@ class Users extends Component {
         super(props);
         this.dataManager = new GetUsersDataManager();
         this.state = {
-            page: 1
         }
 
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        document.title = this.props.role == 1 ? "Jobless | Recruiters" : "Jobless | Candidates";
-        if (prevState.page != this.state.page || prevProps.users.count != this.props.users.count || prevProps.role != this.props.role) {
-            this.dataManager.getAllUsers({ page: this.state.page, role: this.props.role })
+    getCurrentPage = () => {
+        const page = this.props.match.params;
+        if (page && page.page) {
+            return parseInt(page.page);
+        }
+
+        return 1;
+    }
+
+    getUsers= () =>{
+        this.dataManager.getAllUsers({ page: this.getCurrentPage(), role: this.props.role })
                 .then(res => {
                     if (res.data.status) {
                         if (this.props.role == 1)
@@ -30,12 +36,19 @@ class Users extends Component {
                 })
                 .catch(err => {
                 })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        document.title = this.props.role == 1 ? "Jobless | Recruiters" : "Jobless | Candidates";
+        const page = prevProps.match.params;
+        if ((page && page.page && parseInt(page.page) !== this.getCurrentPage()) || prevProps.users.count !== this.props.users.count || prevProps.role != this.props.role) {
+            this.getUsers();
         }
     }
 
     componentDidMount() {
         document.title = this.props.role == 1 ? "Jobless | Recruiters" : "Jobless | Candidates";
-        this.dataManager.getAllUsers({ page: this.state.page, role: this.props.role })
+        this.dataManager.getAllUsers({ page: 1, role: this.props.role })
             .then(res => {
                 if (res.data.status) {
                     if (this.props.role == 1)
@@ -50,9 +63,7 @@ class Users extends Component {
     }
 
     handlePageChange = (newPage) => {
-        this.setState({
-            page: newPage
-        });
+        this.props.history.push(`/admin-profile/${newPage}`);
     }
 
     getHeading = () => {
@@ -111,7 +122,7 @@ class Users extends Component {
                 {this.getHeading()}
                 {this.getRows()}
                 {this.props.users.count == 0 ? '' :
-                    <Paginate totalJobs={this.props.users.count} active={this.state.page} handlePageChange={this.handlePageChange}></Paginate>
+                    <Paginate totalJobs={this.props.users.count} active={this.getCurrentPage()} handlePageChange={this.handlePageChange}></Paginate>
                 }
             </div>
         );

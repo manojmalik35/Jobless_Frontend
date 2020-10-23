@@ -40,7 +40,7 @@ class AdminLogin extends Component {
             .then(res => {
                 if (res.data.status) {
                     this.props.loginAction(res.data.data);
-                    this.props.history.push("/admin-profile");
+                    this.props.history.push("/admin-profile/1");
                 }
             })
             .catch(err => {

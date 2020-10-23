@@ -1,9 +1,10 @@
-import { Modal, Button, Container, Row } from 'react-bootstrap';
-import React from 'react';
+import { Modal, Container, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import NoApplicants from '../NoApplicants/NoApplicants';
 import ApplicantCard from '../ApplicantCard/ApplicantCard';
+import RecruiterDataManager from '../Modal/dataManager';
 
-function getCards(applicants, rowNo){
+function getCards(applicants, rowNo) {
     let si = rowNo * 2;
     let ei = si + 2;
     let cards = [];
@@ -16,7 +17,7 @@ function getCards(applicants, rowNo){
     return cards;
 }
 
-function getRows(applicants){
+function getRows(applicants) {
 
     let totalApplicants = applicants.length;
     if (totalApplicants == 0) {
@@ -43,6 +44,29 @@ function getRows(applicants){
 }
 
 function ApplicantsModal(props) {
+
+
+    const [applicants, setApplicants] = useState({
+        count: 0,
+        applicants: []
+    });
+    const dataManager = new RecruiterDataManager();
+
+    useEffect(() => {
+        dataManager.handleGetApplicants({ job_id: props.job.uuid })
+            .then(res => {
+                if (res.data.status) {
+                    setApplicants({
+                        count: res.data.data.length,
+                        applicants: res.data.data
+                    });
+                }
+            })
+            .catch(err => {
+            })
+
+    }, []);
+
     return (
         <Modal
             {...props}
@@ -58,8 +82,8 @@ function ApplicantsModal(props) {
           </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Total {props.count} applications</h4>
-                {getRows(props.applicants)}
+                <h4>Total {applicants.count} applications</h4>
+                {getRows(applicants.applicants)}
             </Modal.Body>
         </Modal>
     );

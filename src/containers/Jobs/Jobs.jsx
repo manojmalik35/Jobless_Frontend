@@ -13,38 +13,38 @@ class Jobs extends Component {
         super(props);
         this.dataManager = new GetJobsDataManager();
         this.state = {
-            totalCount: 0,
-            page: 1
         }
 
     }
 
+    getCurrentPage = () => {
+        const page = this.props.match.params;
+        if (page && page.page) {
+            return parseInt(page.page);
+        }
+
+        return 1;
+    }
+
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.type != prevProps.type || this.state.page != prevState.page) {
+        const page = prevProps.match.params;
+        if (this.props.type != prevProps.type || (page && page.page && parseInt(page.page) !== this.getCurrentPage())) {
             if (this.props.type != "Applied") {
                 document.title = "Jobless | Dashboard";
-                this.dataManager.getJobs({ page: this.state.page })
+                this.dataManager.getJobs({ page: this.getCurrentPage()})
                     .then(res => {
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
-                            this.setState({
-                                totalCount: res.data.metadata.resultset.count,
-                                page : this.props.type == prevProps.type ? this.state.page : 1
-                            })
                         }
                     })
                     .catch(err => {
                     })
             } else {
                 document.title = "Jobless | Applied Jobs"
-                this.dataManager.getAppliedJobs({ page: this.state.page })
+                this.dataManager.getAppliedJobs({ page: this.getCurrentPage() })
                     .then(res => {
                         if (res.data.status) {
                             this.props.getAppliedJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
-                            this.setState({
-                                totalCount: res.data.metadata.resultset.count,
-                                page : this.props.type == prevProps.type ? this.state.page : 1
-                            })
                         }
                     })
                     .catch(err => {
@@ -52,13 +52,10 @@ class Jobs extends Component {
             }
         } else {
             if (prevProps.jobs.count != this.props.jobs.count && this.props.type == prevProps.type && this.props.jobs.type == prevProps.jobs.type) {
-                this.dataManager.getJobs({ page: this.state.page })
+                this.dataManager.getJobs({ page: this.getCurrentPage() })
                     .then(res => {
                         if (res.data.status) {
                             this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
-                            this.setState({
-                                totalCount: res.data.metadata.resultset.count
-                            })
                         }
                     })
                     .catch(err => {
@@ -69,13 +66,10 @@ class Jobs extends Component {
 
     componentDidMount() {
 
-        this.dataManager.getJobs({ page: this.state.page })
+        this.dataManager.getJobs({ page: 1 })
             .then(res => {
                 if (res.data.status) {
                     this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
-                    this.setState({
-                        totalCount: res.data.metadata.resultset.count
-                    })
                 }
             })
             .catch(err => {
@@ -84,9 +78,10 @@ class Jobs extends Component {
     }
 
     handlePageChange = (newPage) => {
-        this.setState({
-            page: newPage
-        });
+        if(this.props.role == 1)
+            this.props.history.push(`/recruiter-profile/${newPage}`);
+        else
+            this.props.history.push(`/candidate-profile/${newPage}`);
     }
 
     getHeading = () => {
@@ -159,8 +154,8 @@ class Jobs extends Component {
             <div className="jobs-container">
                 {this.getHeading()}
                 {this.getRows()}
-                {this.state.totalCount == 0 ? '' :
-                    <Paginate totalJobs={this.state.totalCount} active={this.state.page} handlePageChange={this.handlePageChange}></Paginate>
+                {this.props.jobs.count == 0 ? '' :
+                    <Paginate totalJobs={this.props.jobs.count} active={this.getCurrentPage()} handlePageChange={this.handlePageChange}></Paginate>
                 }
             </div>
         );

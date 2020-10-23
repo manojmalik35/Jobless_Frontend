@@ -8,11 +8,11 @@ export default (ChildComponent) => {
             let is_logged_in = this.props.auth.isUserLoggedIn;
             if (is_logged_in) {
                 if (this.props.auth.user.role == 1)
-                    return <Redirect to='/recruiter-profile' />;
+                    return <Redirect to='/recruiter-profile/1' />;
                 else if (this.props.auth.user.role == 2) 
-                    return <Redirect to='/candidate-profile' />;
+                    return <Redirect to='/candidate-profile/1' />;
                 else
-                    return <Redirect to='/admin-profile' />;
+                    return <Redirect to='/admin-profile/1' />;
             }
 
             return <ChildComponent/>;

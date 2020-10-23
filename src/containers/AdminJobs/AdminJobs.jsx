@@ -15,31 +15,36 @@ class Jobs extends Component {
 
     }
 
-    getCurrentPage = () =>{
+    getCurrentPage = () => {
         const page = this.props.match.params;
-        if(page && page.page){
+        if (page && page.page) {
             return parseInt(page.page);
         }
 
         return 1;
     }
 
+    getJobs = () => {
+        this.dataManager.getAllJobs({ page: this.getCurrentPage() })
+            .then(res => {
+                if (res.data.status) {
+                    this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
+                }
+            })
+            .catch(err => {
+            })
+    }
+
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.page !== this.getCurrentPage() || prevProps.jobs.count !== this.props.jobs.count) {
-            this.dataManager.getAllJobs({ page: this.getCurrentPage() })
-                .then(res => {
-                    if (res.data.status) {
-                        this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });
-                    }
-                })
-                .catch(err => {
-                })
+        const page = prevProps.match.params;
+        if ((page && page.page && parseInt(page.page) !== this.getCurrentPage()) || prevProps.jobs.count !== this.props.jobs.count) {
+            this.getJobs();
         }
     }
 
     componentDidMount() {
-        this.dataManager.getAllJobs({ page: this.getCurrentPage() })
+        this.dataManager.getAllJobs({ page: 1 })
             .then(res => {
                 if (res.data.status) {
                     this.props.getJobsAction({ jobs: res.data.data, count: res.data.metadata.resultset.count });

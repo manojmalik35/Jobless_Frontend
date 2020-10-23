@@ -8,7 +8,7 @@ function getButton(props) {
             <React.Fragment>
                 <p>Recruiters will show here</p>
                 <div className="btn-container">
-                    <button className="btn" onClick={() => props.handleMenuChange("Recruiters")}>View Recruiters</button>
+                    <button className="btn" onClick={() => props.handleMenuChange("Candidates")}>View Candidates</button>
                 </div>
             </React.Fragment>
         )
@@ -17,7 +17,7 @@ function getButton(props) {
             <React.Fragment>
                 <p>Candidates will show here</p>
                 <div className="btn-container">
-                    <button className="btn" onClick={() => props.handleMenuChange("Candidates")}>View Candidates</button>
+                    <button className="btn" onClick={() => props.handleMenuChange("Recruiters")}>View Recruiters</button>
                 </div>
             </React.Fragment>
         )

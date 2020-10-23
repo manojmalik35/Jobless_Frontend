@@ -21,6 +21,7 @@ class AdminProfile extends Component {
         this.setState({
             menu: newMenu
         });
+        this.props.history.push("/admin-profile/1");       
     }
 
     getBreadcrumb = () => {
@@ -43,10 +44,9 @@ class AdminProfile extends Component {
         if (this.state.menu === "Jobs")
             return (<AdminJobs {...this.props} handleMenuChange={this.handleMenuChange} />)
         else if (this.state.menu === "Recruiters")
-            return (<Users role={1} handleMenuChange={this.handleMenuChange}/>)
+            return (<Users {...this.props} role={1} handleMenuChange={this.handleMenuChange}/>)
         else
-            return (<Users role={2} handleMenuChange={this.handleMenuChange}/>)
-
+            return (<Users {...this.props} role={2} handleMenuChange={this.handleMenuChange}/>)
     }
 
     render() {

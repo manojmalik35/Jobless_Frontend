@@ -58,16 +58,13 @@ class ResetPassword extends Component {
                     <p>Enter your new password below.</p>
                     <form>
                         <fieldset>
-                            <label>New password</label>
+                            <label>New password<span className="star">*</span></label>
                             <Input type="password" name="password" value={this.state.password} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
                         <fieldset>
-                            <label>Confirm new password</label>
+                            <label>Confirm new password<span className="star">*</span></label>
                             <Input type="password" name="confirmPassword" value={this.state.confirmPassword} handleChange={this.handleChange} required={true}></Input>
                         </fieldset>
-                        <div className="error-container hidden">
-                            <p className="error">Incorrect email address or password.</p>
-                        </div>
                         {this.state.submitted ?
                             <React.Fragment>
                                 <Alert variant='success'>

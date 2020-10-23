@@ -46,7 +46,9 @@ const UserCard = (props) => {
                             :
                             <button className="job-btn application" id={props.user.uuid} onClick={handleShow}>View Applied Jobs</button>
                         }
-                        <JobModal key={props.user.uuid} show={modalShow} onHide={handleClose} user={props.user} />
+                        {
+                            modalShow && <JobModal key={props.user.uuid} show={modalShow} onHide={handleClose} user={props.user} />
+                        }
                     </div>
                 </Card.Body>
             </Card>

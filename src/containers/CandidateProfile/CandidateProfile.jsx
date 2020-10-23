@@ -20,6 +20,7 @@ class CandidateProfile extends Component {
         this.setState({
             menu: newMenu
         });
+        this.props.history.push("/candidate-profile/1");    
     }
 
     getBreadcrumb = () => {
@@ -42,7 +43,7 @@ class CandidateProfile extends Component {
                 <Header role={2} handleMenuChange={this.handleMenuChange}></Header>
                 <div className="content">
                     {this.getBreadcrumb()}
-                    <Jobs role={2} type={this.state.menu} handleMenuChange={this.handleMenuChange}></Jobs>
+                    <Jobs {...this.props} role={2} type={this.state.menu} handleMenuChange={this.handleMenuChange}></Jobs>
                 </div>
             </div>
         );

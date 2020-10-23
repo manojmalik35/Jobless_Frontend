@@ -24,9 +24,8 @@ const App = () => {
                     <Route path="/signup" exact component={Signup} />
                     <Route path="/forgot-password" exact component={ForgotPassword} />
                     <Route path="/reset-password" component={ResetPassword} />
-                    <Route path="/recruiter-profile" exact component={RecruiterProfile} />
-                    <Route path="/candidate-profile" exact component={CandidateProfile} />
-                    <Route path="/admin-profile" exact component={AdminProfile} />
+                    <Route path="/recruiter-profile/:page" exact component={RecruiterProfile} />
+                    <Route path="/candidate-profile/:page" exact component={CandidateProfile} />
                     <Route path="/admin-profile/:page" exact component={AdminProfile} />
                     <Route path="/" component={PageNotFound} />
                 </Switch>
